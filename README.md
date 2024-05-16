@@ -15,30 +15,29 @@ export PATH=/path/to/GenomeDecoder:$PATH
 ```
 
 ## Usage
-GenomeDecoder can take one or two genomes as input.
+GenomeDecoder can take one or multiple genomes as input. The input genomes should be masked by [RepeatMasker](https://github.com/rmhubley/RepeatMasker), and all the Ns be transformed into random nucleotides.
 
-For one genome:
-```
-# replace <genome1.fa>, <out_dir> with your paths to the genome and output directory
-GenomeDecoder -1 <genome1.fa> -o <out_dir>
-```
+Usage of GenomeDecoder:
 
-For two genomes:
 ```
-# replace <genome1.fa>, <genome2.fa>, <out_dir> with your paths to the two genomes and output directory
-GenomeDecoder -1 <genome1.fa> -2 <genome2.fa> -o <out_dir>
+# for one genome
+GenomeDecoder -g <genome1.fa> -o <out_dir>
+# for two genomes
+GenomeDecoder -g <genome1.fa> -g <genome2.fa> -o <out_dir>
+# for three genomes
+GenomeDecoder -g <genome1.fa> -g <genome2.fa> -g <genome3.fa> -o <out_dir>
 ```
 
 Detailed parameters:
 ```
-usage: GenomeDecoder [-h] -1 GENOME1 [-2 GENOME2] [-k K_VALUES] [-s SIMPLE] [-c COMPLEX] -o OUTPUT
+usage: GenomeDecoder [-h] -g GENOME [-i ITERATIONS] [-k K_VALUES] [-s SIMPLE] [-c COMPLEX] -o OUTPUT
 
 optional arguments:
   -h, --help            show this help message and exit
-  -1 GENOME1, --genome1 GENOME1
-                        Path to the first genome
-  -2 GENOME2, --genome2 GENOME2
-                        Path to the second genome (optional)
+  -g GENOME, --genome GENOME
+                        Path to the genome
+  -i ITERATIONS, --iterations ITERATIONS
+                        The number of iterations for three genomes only
   -k K_VALUES, --k_values K_VALUES
                         K-mer values for graph transformations (default 31,51,101,201,401,801,2001)
   -s SIMPLE, --simple SIMPLE
@@ -50,4 +49,12 @@ optional arguments:
 ```
 
 ## Output
-In the output directory, `final_blocks_1.csv` and `final_blocks_2.csv` (if genome2 is provided) are the constructed synteny blocks. 
+In the output directory, `final_blocks_<number>.csv` are the constructed synteny blocks for corresponding input genomes. For example, `final_blocks_1.csv` is the synteny blocks for the first input genome, `final_blocks_2.csv` is the synteny blocks for the second input genome, etc.
+
+## Running example
+
+The command below will generate synteny blocks for `example/HG38.IHG.Masked.Ns_transformed.fa` and `example/Orang.IGH.Masked.Ns_transformed.fa` in files `example/output/final_blocks_1.csv` and `example/output/final_blocks_2.csv`, respectively.
+
+```
+GenomeDecoder -g example/HG38.IHG.Masked.Ns_transformed.fa -g example/Orang.IGH.Masked.Ns_transformed.fa -o example/output
+```

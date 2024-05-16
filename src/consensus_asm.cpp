@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
     argParser.add<int>("kmer", 'k', "the k-mer size of LJA", true);
     argParser.add<std::string>("output", 'o', "the output directory (should be new)", true);
     argParser.add("only_simple_bulge", '\0', "only conduct simple bulge collapsing");
+    argParser.add("only_synteny", '\0', "only generate synteny blocks");
 
 
     argParser.parse_check(argc, argv);
@@ -29,6 +30,7 @@ int main(int argc, char* argv[]) {
     int k = argParser.get<int>("kmer");
     std::string output = argParser.get<std::string>("output");
     bool only_simple_bulge = argParser.exist("only_simple_bulge");
+    bool only_synteny = argParser.exist("only_synteny");
 
     Graph graph;
     graph.sim_simple = sim_simple;
@@ -50,6 +52,9 @@ int main(int argc, char* argv[]) {
     graph.synteny_block_generation(output + "/graph.with_haplome");
     graph.count_duplicaction_graph(output + "/graph.with_haplome");
     graph.count_imbalanced_graph(output + "/graph.with_haplome");
+
+    if (only_synteny)
+        return 0;
 
     unsigned removed_bulges = 1, removed_whirls = 1, total_whirls = 0;
     std::cout << "Original graph size: " << graph.get_num_nodes() << std::endl;
