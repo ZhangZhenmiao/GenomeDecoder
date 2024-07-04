@@ -87,7 +87,7 @@ def adjust_coordinates(blocks):
 
     df.iloc[len(df)-1, 9] -= 2000
     df["Length in Original Sequence"] = df["End Pos in Original Sequence"] - df["Start Pos in Original Sequence"]
-    df.loc[df["Length in Original Sequence"] >= 2000]
+    df = df.loc[df["Length in Original Sequence"] >= 2000]
     df.to_csv(blocks, index=None, sep='\t')
 
 def get_coordinates(edlib, genome_ori, genome, blocks, output):
