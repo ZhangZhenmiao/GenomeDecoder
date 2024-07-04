@@ -38,7 +38,7 @@ for seq_len, flag in cigar:
         print("Unrecognized ciggar flag")
 
 query2ref[query_len] = ref_len
-print(ref_len, query_len)
+# print(ref_len, query_len)
 
 def similarity(cigar, start, end):
     ref_len = 0

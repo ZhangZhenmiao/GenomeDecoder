@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
             sequence1 += line;
     }
     seq1_f.close();
-    std::cout << sequence1.size() << std::endl;
+    // std::cout << sequence1.size() << std::endl;
 
     std::ifstream seq2_f(file2);
     while (getline(seq2_f, line)) {
@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
             sequence2 += line;
     }
     seq2_f.close();
-    std::cout << sequence2.size() << std::endl;
+    // std::cout << sequence2.size() << std::endl;
 
     std::string cigar = align_by_edlib(sequence2, sequence1);
 

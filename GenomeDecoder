@@ -87,7 +87,14 @@ def adjust_coordinates(blocks):
 
     df.iloc[len(df)-1, 9] -= 2000
     df["Length in Original Sequence"] = df["End Pos in Original Sequence"] - df["Start Pos in Original Sequence"]
+    df.loc[df["Length in Original Sequence"] >= 2000]
     df.to_csv(blocks, index=None, sep='\t')
+
+def get_coordinates(edlib, genome_ori, genome, blocks, output):
+    run_cmd(["edlib", genome_ori, genome, edlib], f"Aligning transformed sequence {genome} to original sequence {genome_ori}")
+    run_cmd(["parse_cigar.py", f"{edlib}/cigar.txt", blocks, "edlib"], f"Finalizing genome {genome_ori}")
+    run_cmd(["mv", f"{blocks}.edlib.csv", output], f"Copying result {output}")
+    adjust_coordinates(output)
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -234,15 +241,19 @@ elif len(genomes_to_run) == 2:
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 
     edlib_1 = f"{out_dir_consensus}.edlib1"
-    run_cmd(["edlib", genome1_ori, genome1, edlib_1], "Aligning transformed sequence 1 to original sequence 1")
-    run_cmd(["parse_cigar.py", f"{edlib_1}/cigar.txt", f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks", "edlib"], "Finalizing genome 1")
-    run_cmd(["mv", f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks.edlib.csv", f"{args.output}/final_blocks_1.csv"], "Copying result 1")
-    adjust_coordinates(f"{args.output}/final_blocks_1.csv")
+    blocks_1 = f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks"
+    output_1 = f"{args.output}/final_blocks_1.csv"
+    align_thread_1 = threading.Thread(target=get_coordinates, args=(edlib_1, genome1_ori, genome1, blocks_1, output_1,))
+    align_thread_1.start()
+    
     edlib_2 = f"{out_dir_consensus}.edlib2"
-    run_cmd(["edlib", genome2_ori, genome2, edlib_2], "Aligning transformed sequence 2 to original sequence 2")
-    run_cmd(["parse_cigar.py", f"{edlib_2}/cigar.txt", f"{out_dir_consensus}/graph.with_haplome.haplome2.blocks", "edlib"], "Finalizing genome 2")
-    run_cmd(["mv", f"{out_dir_consensus}/graph.with_haplome.haplome2.blocks.edlib.csv", f"{args.output}/final_blocks_2.csv"], "Copying result 2")
-    adjust_coordinates(f"{args.output}/final_blocks_2.csv")
+    blocks_2 = f"{out_dir_consensus}/graph.with_haplome.haplome2.blocks"
+    output_2 = f"{args.output}/final_blocks_2.csv"
+    align_thread_2 = threading.Thread(target=get_coordinates, args=(edlib_2, genome2_ori, genome2, blocks_2, output_2,))
+    align_thread_2.start()
+
+    align_thread_1.join()
+    align_thread_2.join()
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 
 else:
@@ -252,7 +263,7 @@ else:
         for index1, index2 in combinations(range(len(genomes_to_run)), 2):
             genome1 = os.path.realpath(genomes_to_run[index1])
             genome2 = os.path.realpath(genomes_to_run[index2])
-            print(f"Run synteny for {genome1} ({genomes_ori[index1]}) and {genome2} ({genomes_ori[index2]})")
+            logging(f"Run synteny for {genome1} and {genome2}")
             
             output = f"{args.output}/{it}_genome{index1+1}_genome{index2+1}"
             run_cmd(["mkdir", output], "Making output dir")
@@ -299,14 +310,17 @@ else:
     fa_graph = f"{out_dir_graph}/graph.fasta"
     out_dir_consensus = f"{args.output}/consensus_final"
     run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genomes_to_run[0], "-2", genomes_to_run[1], "-3", genomes_to_run[2], "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex, "--only_synteny"], f"Graph transformation for k={k}")
-    #edlib
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
+
+    threads = []
     for i in range(len(genomes_to_run)):
         edlib = f"{out_dir_consensus}.edlib{i+1}"
-        run_cmd(["edlib", genomes_ori[i], genomes_to_run[i], edlib], f"Aligning transformed sequence {i+1} to original sequence {i+1}: {genomes_ori[i]}")
-        run_cmd(["parse_cigar.py", f"{edlib}/cigar.txt", f"{out_dir_consensus}/graph.with_haplome.haplome{i+1}.blocks", "edlib"], f"Finalizing genome {i+1}: {genomes_ori[i]}")
-        run_cmd(["mv", f"{out_dir_consensus}/graph.with_haplome.haplome{i+1}.blocks.edlib.csv", f"{args.output}/final_blocks_{i+1}.csv"], f"Copying result {i+1}: {genomes_ori[i]}")
-        adjust_coordinates(f"{args.output}/final_blocks_{i+1}.csv")
+        blocks = f"{out_dir_consensus}/graph.with_haplome.haplome{i+1}.blocks"
+        output = f"{args.output}/final_blocks_{i+1}.csv"
+        align_thread = threading.Thread(target=get_coordinates, args=(edlib, genomes_ori[i],  genomes_to_run[i], blocks, output,))
+        threads.append(align_thread)
+    for t in threads:
+        t.join()
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 
 logging("GenomeDecoder finished")
