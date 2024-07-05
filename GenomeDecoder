@@ -318,6 +318,7 @@ else:
         blocks = f"{out_dir_consensus}/graph.with_haplome.haplome{i+1}.blocks"
         output = f"{args.output}/final_blocks_{i+1}.csv"
         align_thread = threading.Thread(target=get_coordinates, args=(edlib, genomes_ori[i],  genomes_to_run[i], blocks, output,))
+        align_thread.start()
         threads.append(align_thread)
     for t in threads:
         t.join()
