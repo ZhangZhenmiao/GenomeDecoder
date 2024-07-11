@@ -229,15 +229,15 @@ elif len(genomes_to_run) == 2:
         genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
         genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
 
-    out = f"{k}.1"
+    out = f"consensus_final"
     out_dir_graph = f"{args.output}/jumbodbg.consensus.k{out}"
     dot_graph = f"{out_dir_graph}/graph.dot"
     fa_graph = f"{out_dir_graph}/graph.fasta"
     out_dir_consensus = f"{args.output}/consensus.k{out}"
     run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
     run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
-    genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
-    genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
+    # genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
+    # genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 
     edlib_1 = f"{out_dir_consensus}.edlib1"
@@ -305,11 +305,10 @@ else:
     out_dir_graph = f"{args.output}/jumbodbg_final"
     print("Run cmd:", " ".join(["jumboDBG", "--reads", " --reads ".join(genomes_to_run), "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"]))
     os.system(" ".join(["jumboDBG", "--reads", " --reads ".join(genomes_to_run), "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"]))
-    # consensus (fixed for 3 genomes)
     dot_graph = f"{out_dir_graph}/graph.dot"
     fa_graph = f"{out_dir_graph}/graph.fasta"
     out_dir_consensus = f"{args.output}/consensus_final"
-    run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genomes_to_run[0], "-2", genomes_to_run[1], "-3", genomes_to_run[2], "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex, "--only_synteny"], f"Graph transformation for k={k}")
+    run_cmd(["synteny", "-d", dot_graph, "-f", fa_graph, "-h", ",".join(genomes_to_run), "-k", k, "-o", out_dir_consensus], f"Generate synteny blocks")
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 
     threads = []
