@@ -52,9 +52,9 @@ GenomeDecoder is a tool developed for complete genomes, so each input genome sho
 To run RepeatMasker, the species name is required (if not specified, RepeatMasker will treat the sequence as human by default):
 
 ```bash
-RepeatMasker -species <species_name> <input_file>
+RepeatMasker [-species species_name] input_file.fa
 ```
-This will create `<input_file>.masked`. See more details in [RepeatMasker](https://www.repeatmasker.org/webrepeatmaskerhelp.html) manual.
+This will create `input_file.fa.masked`. See more details in [RepeatMasker](https://www.repeatmasker.org/webrepeatmaskerhelp.html) manual.
 
 ### GenomeDecoder Command Syntax:
 ```bash
@@ -84,9 +84,9 @@ GenomeDecoder [-h] -g GENOME [-i ITERATIONS] [-k K_VALUES] [-s SIMPLE] [-c COMPL
 
 ## Outputs
 
-In the output directory, GenomeDecoder generates files named `final_blocks_i.csv`, where each `i` corresponds to the synteny blocks of the ith input genome, with a minimum block length of 2 kb.
+In the output directory, GenomeDecoder generates files named `final_blocks_<i>.csv`, where each `i` corresponds to the synteny blocks of the i<sup>th</sup> input genome, with a minimum block length of 2 kb.
 
-Each `final_blocks_i.csv` file contains 12 columns:
+Each `final_blocks_<i>.csv` file contains 12 columns:
 
 - **Synteny Block in Transformed Sequence**: Identifies each block-instance with a unique format: `block_ID(multiplicity_in_disembroiled_graph)length_in_kb`.
   
@@ -131,10 +131,10 @@ The output will be printed to stdout.
 
 ### Example Usage
 
-The following command generates synteny blocks for the RepeatMasker-processed files `example/HG38.IHG.Masked.Ns_transformed.fa` and `example/Orang.IGH.Masked.Ns_transformed.fa`, saving the outputs to `example/output/final_blocks_1.csv` and `example/output/final_blocks_2.csv`, respectively:
+The following command generates synteny blocks for the RepeatMasker-processed files `test_example/HG38.IHG.Masked.Ns_transformed.fa` and `test_example/Orang.IGH.Masked.Ns_transformed.fa`, saving the outputs to `test_example/output/final_blocks_1.csv` and `test_example/output/final_blocks_2.csv`, respectively:
 
 ```bash
-GenomeDecoder -g example/HG38.IHG.Masked.Ns_transformed.fa -g example/Orang.IGH.Masked.Ns_transformed.fa -o example/output
+GenomeDecoder -g test_example/HG38.IHG.Masked.Ns_transformed.fa -g test_example/Orang.IGH.Masked.Ns_transformed.fa -o test_example/output
 ```
 
 ## Contact
