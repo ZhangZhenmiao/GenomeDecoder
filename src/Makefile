@@ -19,4 +19,4 @@ edlib_align: edlib.cpp
 	g++ -g -o edlib_align edlib.cpp edlib/src/edlib.cpp -I edlib/include
 
 clean:
-	rm -rf consensus_asm edlib_align dot_graph.o graph_simplification.o synteny synteny_graph.o
+	rm -rf consensus_asm edlib_align dot_graph.o graph_simplification.o synteny synteny_graph.o edlib.o
