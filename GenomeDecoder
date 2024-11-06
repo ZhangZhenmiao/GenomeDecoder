@@ -109,7 +109,7 @@ parser.add_argument(
     "--genome",
     required=True,
     action="append",
-    help="Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single sequence per file and be masked using RepeatMasker. Use -g multiple times to compare multiple genomes."
+    help="Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker. Use -g multiple times to compare multiple genomes."
 )
 parser.add_argument(
     "-i",
