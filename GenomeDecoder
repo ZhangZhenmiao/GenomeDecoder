@@ -73,7 +73,14 @@ def add_random_prefix_suffix(input_file, output_file, prefix_length=2000, suffix
         for record in SeqIO.parse(infile, "fasta"):
             prefix = random_sequence(prefix_length)
             suffix = random_sequence(suffix_length)
-            new_seq = Seq(prefix + str(record.seq) + suffix)
+            seq = str(record.seq).upper()
+            seq_trans = ""
+            for l in seq:
+                if l not in ['A', 'T', 'C', 'G']:
+                    seq_trans += random.choice(['A', 'T', 'C', 'G'])
+                else:
+                    seq_trans += l
+            new_seq = Seq(prefix + seq_trans + suffix)
             new_record = SeqRecord(new_seq, id=record.id, description=record.description)
             SeqIO.write(new_record, outfile, "fasta")
     
@@ -91,8 +98,8 @@ def adjust_coordinates(blocks):
     df.to_csv(blocks, index=None, sep='\t')
 
 def get_coordinates(edlib, genome_ori, genome, blocks, output):
-    run_cmd(["edlib", genome_ori, genome, edlib], f"Aligning transformed sequence {genome} to original sequence {genome_ori}")
-    run_cmd(["parse_cigar.py", f"{edlib}/cigar.txt", blocks, "edlib"], f"Finalizing genome {genome_ori}")
+    run_cmd([f"{dirname}/src/edlib_align", genome_ori, genome, edlib], f"Aligning transformed sequence {genome} to original sequence {genome_ori}")
+    run_cmd([f"{dirname}/src/parse_cigar.py", f"{edlib}/cigar.txt", blocks, "edlib"], f"Finalizing genome {genome_ori}")
     run_cmd(["mv", f"{blocks}.edlib.csv", output], f"Copying result {output}")
     adjust_coordinates(output)
 
@@ -102,7 +109,7 @@ parser.add_argument(
     "--genome",
     required=True,
     action="append",
-    help="Path to the genome"
+    help="Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single sequence per file and be masked using RepeatMasker. Use -g multiple times to compare multiple genomes."
 )
 parser.add_argument(
     "-i",
@@ -110,14 +117,14 @@ parser.add_argument(
     required=False,
     type=int,
     default=5,
-    help="The number of iterations for three genomes only"
+    help="Specifies the number of iterations to use, applicable for disembroiling more than two input genomes. The default value is 5."
 )
 parser.add_argument(
     "-k",
     "--k_values",
     required=False,
     default="31,51,101,201,401,801,2001",
-    help="K-mer values for graph transformations (default 31,51,101,201,401,801,2001)"
+    help="Defines K-mer values for graph transformations. The default values are 31,51,101,201,401,801,2001. For highly complex regions, another recommended setting is \"-k 21,25,31,51,101,201,401,801,2001\" to produce more detailed SD blocks."
 )
 parser.add_argument(
     "-s",
@@ -125,7 +132,7 @@ parser.add_argument(
     required=False,
     default="0",
     type=str,
-    help="Similarity threshold for collapsing simple bulges (default 0)"
+    help="Sets the similarity threshold for collapsing simple bubbles. The default value is 0, which is suitable for most datasets."
 )
 parser.add_argument(
     "-c",
@@ -133,13 +140,13 @@ parser.add_argument(
     required=False,
     default="0.65",
     type=str,
-    help="Similarity threshold for collapsing complex bulges (default 0.65)"
+    help="Sets the similarity threshold for collapsing complex bubbles. The default value is 0.65, which is suitable for most datasets."
 )
 parser.add_argument(
     "-o",
     "--output",
     required=True,
-    help="Output directory of GenomeDecoder"
+    help="pecifies the output directory where GenomeDecoder will save the results. This argument is required."
 )
 
 args = parser.parse_args()
@@ -151,6 +158,11 @@ if (os.path.isdir(args.output)):
 k_values = args.k_values.split(',')
 if len(k_values) < 2:
     logging(f"K should be more than 2 values.")
+    exit(1)
+
+if int(k_values[0]) < 20:
+    logging(f"We recommend the smallest k to be 21.")
+    exit(1)
 
 pid = os.getpid()
 process = psutil.Process(pid)
@@ -158,6 +170,9 @@ logging("GenomeDecoder starts")
 logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 # create output directory
 run_cmd(["mkdir", args.output], "Making output dir")
+
+# get py dir
+dirname, filename = os.path.split(os.path.abspath(__file__))
 
 genomes = args.genome
 genomes_to_run = []
@@ -174,7 +189,7 @@ if len(genomes_to_run) == 1:
     fa_graph = f"{out_dir_graph}/graph.fasta"
     out_dir_consensus = f"{args.output}/consensus.k{k}"
     run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-    run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
+    run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
     genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
 
     for k in k_values[1:]:
@@ -183,7 +198,7 @@ if len(genomes_to_run) == 1:
         fa_graph = f"{out_dir_graph}/graph.fasta"
         out_dir_consensus = f"{args.output}/consensus.k{k}"
         run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-        run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+        run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
         genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
 
     out = f"{k}.1"
@@ -192,13 +207,13 @@ if len(genomes_to_run) == 1:
     fa_graph = f"{out_dir_graph}/graph.fasta"
     out_dir_consensus = f"{args.output}/consensus.k{out}"
     run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-    run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+    run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
     genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 
     edlib_1 = f"{out_dir_consensus}.edlib1"
-    run_cmd(["edlib", genome1_ori, genome1, edlib_1], "Aligning transformed sequence 1 to original sequence 1")
-    run_cmd(["parse_cigar.py", f"{edlib_1}/cigar.txt", f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks", "edlib"], "Finalizing genome 1")
+    run_cmd([f"{dirname}/src/edlib_align", genome1_ori, genome1, edlib_1], "Aligning transformed sequence 1 to original sequence 1")
+    run_cmd([f"{dirname}/src/parse_cigar.py", f"{edlib_1}/cigar.txt", f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks", "edlib"], "Finalizing genome 1")
     run_cmd(["mv", f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks.edlib.csv", f"{args.output}/final_blocks_1.csv"], "Copying result 1")
     adjust_coordinates(f"{args.output}/final_blocks_1.csv")
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
@@ -215,7 +230,7 @@ elif len(genomes_to_run) == 2:
     fa_graph = f"{out_dir_graph}/graph.fasta"
     out_dir_consensus = f"{args.output}/consensus.k{k}"
     run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-    run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
+    run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
     genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
     genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
 
@@ -225,17 +240,17 @@ elif len(genomes_to_run) == 2:
         fa_graph = f"{out_dir_graph}/graph.fasta"
         out_dir_consensus = f"{args.output}/consensus.k{k}"
         run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-        run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+        run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
         genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
         genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
 
-    out = f"consensus_final"
+    out = f"{k}.1"
     out_dir_graph = f"{args.output}/jumbodbg.consensus.k{out}"
     dot_graph = f"{out_dir_graph}/graph.dot"
     fa_graph = f"{out_dir_graph}/graph.fasta"
     out_dir_consensus = f"{args.output}/consensus.k{out}"
     run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-    run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+    run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
     # genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
     # genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
@@ -273,7 +288,7 @@ else:
             fa_graph = f"{out_dir_graph}/graph.fasta"
             out_dir_consensus = f"{output}/consensus.k{k}"
             run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-            run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
+            run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
             genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
             genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
 
@@ -283,7 +298,7 @@ else:
                 fa_graph = f"{out_dir_graph}/graph.fasta"
                 out_dir_consensus = f"{output}/consensus.k{k}"
                 run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-                run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+                run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
                 genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
                 genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
 
@@ -293,7 +308,7 @@ else:
             fa_graph = f"{out_dir_graph}/graph.fasta"
             out_dir_consensus = f"{output}/consensus.k{out}"
             run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-            run_cmd(["consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+            run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
             genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
             genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
             logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
@@ -308,7 +323,7 @@ else:
     dot_graph = f"{out_dir_graph}/graph.dot"
     fa_graph = f"{out_dir_graph}/graph.fasta"
     out_dir_consensus = f"{args.output}/consensus_final"
-    run_cmd(["synteny", "-d", dot_graph, "-f", fa_graph, "-h", ",".join(genomes_to_run), "-k", k, "-o", out_dir_consensus], f"Generate synteny blocks")
+    run_cmd([f"{dirname}/src/synteny", "-d", dot_graph, "-f", fa_graph, "-h", ",".join(genomes_to_run), "-k", k, "-o", out_dir_consensus], f"Generate synteny blocks")
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 
     threads = []
