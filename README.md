@@ -47,8 +47,8 @@
 
    Build GenomeDecoder:
    ```bash
-   cd GenomeDecoder/src && make
-   chmod +x consensus_asm edlib_align parse_cigar.py synteny synteny_analysis.py transform_Ns.py
+   cd src && make
+   chmod +x consensus_asm edlib_align parse_cigar.py synteny synteny_analysis.py
    cd .. && chmod +x GenomeDecoder
    ```
 

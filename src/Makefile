@@ -2,7 +2,6 @@ default: consensus_asm synteny edlib_align
 
 consensus_asm: consensus_asm.cpp dot_graph.o graph_simplification.o
 	g++ -g -o consensus_asm consensus_asm.cpp dot_graph.o graph_simplification.o -lpthread -fopenmp -fconcepts edlib/src/edlib.cpp -I edlib/include
-	cp consensus_asm ../
 
 dot_graph.o: dot_graph.cpp dot_graph.hpp
 	g++ -g -c dot_graph.cpp -fopenmp -fconcepts edlib/src/edlib.cpp -I edlib/include

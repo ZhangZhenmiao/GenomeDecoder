@@ -212,7 +212,7 @@ if len(genomes_to_run) == 1:
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 
     edlib_1 = f"{out_dir_consensus}.edlib1"
-    run_cmd([f"{dirname}/src/edlib_align", genome1_ori, genome1, edlib_1], "Aligning transformed sequence 1 to original sequence 1")
+    run_cmd([f"{dirname}/src/edlib_align", genome1_ori, genome1, edlib_1], f"Aligning transformed sequence {genome1} to original sequence {genome1_ori}")
     run_cmd([f"{dirname}/src/parse_cigar.py", f"{edlib_1}/cigar.txt", f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks", "edlib"], "Finalizing genome 1")
     run_cmd(["mv", f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks.edlib.csv", f"{args.output}/final_blocks_1.csv"], "Copying result 1")
     adjust_coordinates(f"{args.output}/final_blocks_1.csv")
