@@ -1,0 +1,39 @@
+00:00:00 51Mb  INFO: Hello! You are running jumboDBG, a tool for construction of de Bruijn graphs for arbitrarily large values of k
+00:00:00 51Mb  INFO: Note that jumboDBG does not perform any error correction and ignores all reads shorter than k + w = 2801
+00:00:00 0Mb  INFO: Reading reads
+00:00:00 0Mb  INFO: Extracting minimizers
+00:00:00 11Mb  INFO: Finished read processing
+00:00:00 11Mb  INFO: 2906 hashs collected. Starting sorting.
+00:00:00 11Mb  INFO: Finished sorting. Total distinct minimizers: 1510
+00:00:00 11Mb  INFO: Starting construction of sparse de Bruijn graph
+00:00:00 11Mb  INFO: Vertex map constructed.
+00:00:00 14Mb  INFO: Filling edge sequences.
+00:00:00 17Mb  INFO: Finished sparse de Bruijn graph construction.
+00:00:00 17Mb  INFO: Collecting tips 
+00:00:00 17Mb  INFO: Added 4 artificial minimizers from tips.
+00:00:00 17Mb  INFO: Collected 3132 old edges.
+00:00:00 17Mb  INFO: New minimizers added to sparse graph.
+00:00:00 17Mb  INFO: Refilling graph with old edges.
+00:00:00 17Mb  INFO: Filling graph with new edges.
+00:00:00 17Mb  INFO: Finished fixing sparse de Bruijn graph.
+00:00:00 17Mb  INFO: Starting to extract disjointigs.
+00:00:00 18Mb  INFO: Finished extracting 162 disjointigs of total size 1604900
+00:00:00 51Mb  INFO: Loading disjointigs from file "test_output/jumbodbg.consensus.k801/disjointigs.fasta"
+00:00:00 51Mb  INFO: Filling bloom filter with k+1-mers.
+00:00:00 51Mb  INFO: Filled 6804511 bits out of 47204416
+00:00:00 51Mb  INFO: Finished filling bloom filter. Selecting junctions.
+00:00:01 51Mb  INFO: Collected 751 junctions.
+00:00:01 51Mb  INFO: Starting DBG construction.
+00:00:01 51Mb  INFO: Vertices created.
+00:00:01 51Mb  INFO: Filled dbg edges. Adding hanging vertices 
+00:00:01 51Mb  INFO: Added 0 hanging vertices
+00:00:01 51Mb  INFO: Merging unbranching paths
+00:00:01 51Mb  INFO: Ended merging edges. Resulting size 145
+00:00:01 51Mb  INFO: Calculating edge coverage.
+00:00:01 51Mb  INFO: Starting to fill edge coverages
+00:00:01 51Mb  INFO: Edge coverage calculated.
+00:00:01 51Mb  INFO: Printing graph to fasta file "test_output/jumbodbg.consensus.k801/graph.fasta"
+00:00:01 51Mb  INFO: Printing graph to gfa file "test_output/jumbodbg.consensus.k801/graph.gfa"
+00:00:01 51Mb  INFO: Printing graph to dot file "test_output/jumbodbg.consensus.k801/graph.dot"
+00:00:01 51Mb  INFO: DBG construction finished
+00:00:01 51Mb  INFO: Please cite our paper if you use jumboDBG in your research: https://www.biorxiv.org/content/10.1101/2020.12.10.420448

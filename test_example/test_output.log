@@ -1,0 +1,28 @@
+[2024-11-06 23:04:26.051131] GenomeDecoder starts
+[2024-11-06 23:04:26.051191] RSS (Resident Set Size): 0 bytes
+[2024-11-06 23:04:26.051201] Making output dir
+[2024-11-06 23:04:26.366730] Graph construction for k=31
+[2024-11-06 23:04:29.011148] Graph transformation for k=31
+[2024-11-06 23:05:25.920867] Graph construction for k=51
+[2024-11-06 23:05:28.703652] Graph transformation for k=51
+[2024-11-06 23:14:50.379561] Graph construction for k=101
+[2024-11-06 23:14:52.008574] Graph transformation for k=101
+[2024-11-06 23:15:16.809124] Graph construction for k=201
+[2024-11-06 23:15:18.459490] Graph transformation for k=201
+[2024-11-06 23:15:34.409515] Graph construction for k=401
+[2024-11-06 23:15:36.491657] Graph transformation for k=401
+[2024-11-06 23:15:41.329337] Graph construction for k=801
+[2024-11-06 23:15:43.034285] Graph transformation for k=801
+[2024-11-06 23:15:48.576140] Graph construction for k=2001
+[2024-11-06 23:15:50.313883] Graph transformation for k=2001
+[2024-11-06 23:15:53.060975] Graph construction for k=2001
+[2024-11-06 23:15:54.789370] Graph transformation for k=2001
+[2024-11-06 23:15:56.072965] RSS (Resident Set Size): 312754176 bytes
+[2024-11-06 23:15:56.074135] Aligning transformed sequence test_output/consensus.k2001/graph.final.haplome1.fa to original sequence /Poppy/zmzhang/Consensus_Assembly/GenomeDecoder/test_example/test_output/original_genome_1.pre_suff.fa
+[2024-11-06 23:15:56.074616] Aligning transformed sequence test_output/consensus.k2001/graph.final.haplome2.fa to original sequence /Poppy/zmzhang/Consensus_Assembly/GenomeDecoder/test_example/test_output/original_genome_2.pre_suff.fa
+[2024-11-06 23:18:03.958187] Finalizing genome /Poppy/zmzhang/Consensus_Assembly/GenomeDecoder/test_example/test_output/original_genome_1.pre_suff.fa
+[2024-11-06 23:18:21.579387] Copying result test_output/final_blocks_1.csv
+[2024-11-06 23:18:41.739127] Finalizing genome /Poppy/zmzhang/Consensus_Assembly/GenomeDecoder/test_example/test_output/original_genome_2.pre_suff.fa
+[2024-11-06 23:19:07.072574] Copying result test_output/final_blocks_2.csv
+[2024-11-06 23:19:07.100500] RSS (Resident Set Size): 349462528 bytes
+[2024-11-06 23:19:07.100617] GenomeDecoder finished

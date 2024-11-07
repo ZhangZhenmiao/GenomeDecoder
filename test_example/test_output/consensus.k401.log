@@ -1,0 +1,888 @@
+Finished reading haplome sequences.
+Read sequences from test_output/jumbodbg.consensus.k401/graph.fasta finished (loaded 576 edges, including reverse complements).
+Edges belonging to haplome1: 63, haplome2: 92, both haplomes: 133
+
+Write graph test_output/consensus.k401/graph.with_haplome.dot, fasta test_output/consensus.k401/graph.with_haplome.fasta
+Simple bulge in the same haplome 1 and strand 1 572757710->-936117463
+Simple bulge in the same haplome 1 and strand 1 572757710->-936117463
+Simple bulge in the same haplome 1 and strand 2 936117463->-572757710
+Simple bulge in the same haplome 1 and strand 2 936117463->-572757710
+Total number of nodes: 388
+Total number of edges (non-short edges): 576 (486)
+Bicolored edges: 266
+Length of bicolored edges: 1429648
+Red edges: 126
+Length of red edges: 469798
+Multi 1 (non-short edges): 240 (230)
+Length: 1404224
+Multi 2 (non-short edges): 186 (148)
+Length: 1256674
+Multi 3 (non-short edges): 74 (44)
+Length: 122980
+Multi >3 (non-short edges): 76 (64)
+Length: 149016
+Genome 1 edges: 272
+Genome 1 length: 1084745
+Genome 2 edges: 339
+Genome 2 length: 1455941
+Imbalanced edges (non-short edges): 410 (344)
+Length: 1683866
+Synteny blocks multi (1+1)
+Single edge: 919479630 880775232 multi 2 length 7304 id 1
+Single edge: -880775232 -919479630 multi 2 length 7304 id -1
+Single edge: -811688893 978206283 multi 2 length 1 id 2
+Single edge: -978206283 811688893 multi 2 length 1 id -2
+Single edge: 811688893 -133516968 multi 1 length 4300 id 3
+Single edge: 133516968 -811688893 multi 1 length 4300 id -3
+Single edge: 811688893 -985739290 multi 1 length 6812 id 4
+Single edge: 985739290 -811688893 multi 1 length 6812 id -4
+Single edge: 737986525 131265871 multi 1 length 2941 id 5
+Single edge: -131265871 -737986525 multi 1 length 2941 id -5
+Single edge: 737986525 -831760931 multi 1 length 2943 id 6
+Single edge: 831760931 -737986525 multi 1 length 2943 id -6
+Single edge: -913679560 -709719282 multi 1 length 1410 id 7
+Single edge: 709719282 913679560 multi 1 length 1410 id -7
+Single edge: -420766147 736565553 multi 2 length 759 id 8
+Single edge: -736565553 420766147 multi 2 length 759 id -8
+Single edge: -250785005 254518121 multi 1 length 3508 id 9
+Single edge: -254518121 250785005 multi 1 length 3508 id -9
+Single edge: -250785005 33186328 multi 1 length 3623 id 10
+Single edge: -33186328 250785005 multi 1 length 3623 id -10
+Single edge: 250785005 -567593260 multi 2 length 1 id 11
+Single edge: 567593260 -250785005 multi 2 length 1 id -11
+Single edge: -662788261 910662656 multi 1 length 663 id 12
+Single edge: -910662656 662788261 multi 1 length 663 id -12
+Single edge: -75981490 415575965 multi 2 length 11981 id 13
+Single edge: -415575965 75981490 multi 2 length 11981 id -13
+Single edge: 75981490 -954249719 multi 1 length 6330 id 14
+Single edge: 954249719 -75981490 multi 1 length 6330 id -14
+Single edge: 75981490 521449414 multi 1 length 4667 id 15
+Single edge: -521449414 -75981490 multi 1 length 4667 id -15
+Single edge: 230295172 -630480334 multi 2 length 20233 id 16
+Single edge: 630480334 -230295172 multi 2 length 20233 id -16
+Single edge: 230295172 -948987951 multi 1 length 2752 id 17
+Single edge: 948987951 -230295172 multi 1 length 2752 id -17
+Single edge: -897900746 759701938 multi 2 length 296 id 18
+Single edge: -759701938 897900746 multi 2 length 296 id -18
+Single edge: 897900746 -479358659 multi 1 length 2239 id 19
+Single edge: 479358659 -897900746 multi 1 length 2239 id -19
+Single edge: 897900746 -857744901 multi 1 length 25223 id 20
+Single edge: 857744901 -897900746 multi 1 length 25223 id -20
+Single edge: 156850653 -357575960 multi 1 length 33849 id 21
+Single edge: 357575960 -156850653 multi 1 length 33849 id -21
+Single edge: -841601520 -658892919 multi 1 length 38633 id 22
+Single edge: 658892919 841601520 multi 1 length 38633 id -22
+Single edge: -841601520 -895897115 multi 1 length 14580 id 23
+Single edge: 895897115 841601520 multi 1 length 14580 id -23
+Single edge: 126259895 -65570347 multi 1 length 32496 id 24
+Single edge: 65570347 -126259895 multi 1 length 32496 id -24
+Single edge: 126259895 -872906364 multi 2 length 2023 id 25
+Single edge: 872906364 -126259895 multi 2 length 2023 id -25
+Single edge: 710304188 -491415588 multi 2 length 3831 id 26
+Single edge: 491415588 -710304188 multi 2 length 3831 id -26
+Single edge: 710304188 -76779636 multi 1 length 14208 id 27
+Single edge: 76779636 -710304188 multi 1 length 14208 id -27
+Single edge: 759701938 717151226 multi 1 length 499 id 28
+Single edge: -717151226 -759701938 multi 1 length 499 id -28
+Single edge: 759701938 -472882290 multi 1 length 2002 id 29
+Single edge: 472882290 -759701938 multi 1 length 2002 id -29
+Single edge: 820523878 -75686009 multi 2 length 3011 id 30
+Single edge: 75686009 -820523878 multi 2 length 3011 id -30
+Single edge: 820523878 910662656 multi 1 length 4254 id 31
+Single edge: -910662656 -820523878 multi 1 length 4254 id -31
+Single edge: 294919065 -883222884 multi 2 length 14005 id 32
+Single edge: 883222884 -294919065 multi 2 length 14005 id -32
+Single edge: -425986461 401604840 multi 1 length 1106 id 33
+Single edge: -401604840 425986461 multi 1 length 1106 id -33
+Single edge: -425986461 176899756 multi 1 length 3519 id 34
+Single edge: -176899756 425986461 multi 1 length 3519 id -34
+Single edge: -491415588 -895897115 multi 1 length 19998 id 35
+Single edge: 895897115 491415588 multi 1 length 19998 id -35
+Single edge: -491415588 -76779636 multi 1 length 6898 id 36
+Single edge: 76779636 491415588 multi 1 length 6898 id -36
+Single edge: 425986461 -925561843 multi 2 length 7123 id 37
+Single edge: 925561843 -425986461 multi 2 length 7123 id -37
+Single edge: -195159539 -720916544 multi 1 length 1406 id 38
+Single edge: 720916544 195159539 multi 1 length 1406 id -38
+Single edge: -195159539 -941780266 multi 1 length 1156 id 39
+Single edge: 941780266 195159539 multi 1 length 1156 id -39
+Single edge: 195159539 -391536315 multi 2 length 2857 id 40
+Single edge: 391536315 -195159539 multi 2 length 2857 id -40
+Single edge: 767632536 295013196 multi 2 length 2925 id 41
+Single edge: -295013196 -767632536 multi 2 length 2925 id -41
+Single edge: 767632536 459332174 multi 2 length 2429 id 42
+Single edge: -459332174 -767632536 multi 2 length 2429 id -42
+Single edge: 457702391 -880775232 multi 1 length 1067 id 43
+Single edge: 880775232 -457702391 multi 1 length 1067 id -43
+Single edge: -736565553 -118968088 multi 2 length 13331 id 44
+Single edge: 118968088 736565553 multi 2 length 13331 id -44
+Single edge: -379353899 89398887 multi 2 length 47524 id 45
+Single edge: -89398887 379353899 multi 2 length 47524 id -45
+Single edge: -379353899 -124854333 multi 2 length 65357 id 46
+Single edge: 124854333 379353899 multi 2 length 65357 id -46
+Single edge: -427856248 -11936837 multi 1 length 7518 id 47
+Single edge: 11936837 427856248 multi 1 length 7518 id -47
+Single edge: 682559101 -623078492 multi 1 length 377 id 48
+Single edge: 623078492 -682559101 multi 1 length 377 id -48
+Single edge: -978206283 -133516968 multi 1 length 4331 id 49
+Single edge: 133516968 978206283 multi 1 length 4331 id -49
+Single edge: -818478426 -93030876 multi 1 length 114 id 50
+Single edge: 93030876 818478426 multi 1 length 114 id -50
+Single edge: -818478426 -720916544 multi 1 length 81 id 51
+Single edge: 720916544 818478426 multi 1 length 81 id -51
+Single edge: 818478426 -658892919 multi 2 length 547 id 52
+Single edge: 658892919 -818478426 multi 2 length 547 id -52
+Single edge: 404602268 -472882290 multi 2 length 5142 id 53
+Single edge: 472882290 -404602268 multi 2 length 5142 id -53
+Single edge: 278916761 -184166654 multi 2 length 9237 id 54
+Single edge: 184166654 -278916761 multi 2 length 9237 id -54
+Single edge: -521449414 783547487 multi 1 length 972 id 55
+Single edge: -783547487 521449414 multi 1 length 972 id -55
+Single edge: 521449414 -883222884 multi 2 length 8363 id 56
+Single edge: 883222884 -521449414 multi 2 length 8363 id -56
+Single edge: -297151211 -346394555 multi 2 length 4201 id 57
+Single edge: 346394555 297151211 multi 2 length 4201 id -57
+Single edge: 420766147 295013196 multi 1 length 510 id 58
+Single edge: -295013196 -420766147 multi 1 length 510 id -58
+Single edge: 420766147 -758772711 multi 1 length 1216 id 59
+Single edge: 758772711 -420766147 multi 1 length 1216 id -59
+Single edge: 284971721 112714141 multi 1 length 6994 id 60
+Single edge: -112714141 -284971721 multi 1 length 6994 id -60
+Single edge: 284971721 580786099 multi 2 length 627 id 61
+Single edge: -580786099 -284971721 multi 2 length 627 id -61
+Single edge: -420586568 893219723 multi 2 length 14496 id 62
+Single edge: -893219723 420586568 multi 2 length 14496 id -62
+Single edge: 331863421 430728152 multi 2 length 6662 id 63
+Single edge: -430728152 -331863421 multi 2 length 6662 id -63
+Single edge: 357575960 401604840 multi 2 length 6155 id 64
+Single edge: -401604840 -357575960 multi 2 length 6155 id -64
+Single edge: -606188099 216097173 multi 1 length 7653 id 65
+Single edge: -216097173 606188099 multi 1 length 7653 id -65
+Single edge: -606188099 -184166654 multi 2 length 190 id 66
+Single edge: 184166654 606188099 multi 2 length 190 id -66
+Single edge: 759386375 351672486 multi 1 length 131 id 67
+Single edge: -351672486 -759386375 multi 1 length 131 id -67
+Single edge: 759386375 -642694861 multi 2 length 14021 id 68
+Single edge: 642694861 -759386375 multi 2 length 14021 id -68
+Single edge: -39295268 -877419160 multi 1 length 654 id 69
+Single edge: 877419160 39295268 multi 1 length 654 id -69
+Single edge: -39295268 -877419160 multi 1 length 15735 id 70
+Single edge: 877419160 39295268 multi 1 length 15735 id -70
+Single edge: -528826098 939967153 multi 2 length 15753 id 71
+Single edge: -939967153 528826098 multi 2 length 15753 id -71
+Single edge: 580786099 -376466428 multi 1 length 744 id 72
+Single edge: 376466428 -580786099 multi 1 length 744 id -72
+Single edge: 580786099 587223573 multi 1 length 3566 id 73
+Single edge: -587223573 -580786099 multi 1 length 3566 id -73
+Single edge: 259639920 -259420435 multi 1 length 3602 id 74
+Single edge: 259420435 -259639920 multi 1 length 3602 id -74
+Single edge: 259639920 -578782936 multi 1 length 6141 id 75
+Single edge: 578782936 -259639920 multi 1 length 6141 id -75
+Single edge: -271590561 766035014 multi 2 length 19960 id 76
+Single edge: -766035014 271590561 multi 2 length 19960 id -76
+Single edge: -856585223 -265204352 multi 1 length 1363 id 77
+Single edge: 265204352 856585223 multi 1 length 1363 id -77
+Single edge: 975833915 556726944 multi 2 length 2443 id 78
+Single edge: -556726944 -975833915 multi 2 length 2443 id -78
+Single edge: 975833915 725387691 multi 2 length 6638 id 79
+Single edge: -725387691 -975833915 multi 2 length 6638 id -79
+Single edge: -467419660 -831760931 multi 1 length 3360 id 80
+Single edge: 831760931 467419660 multi 1 length 3360 id -80
+Single edge: 339846511 294919065 multi 1 length 4020 id 81
+Single edge: -294919065 -339846511 multi 1 length 4020 id -81
+Single edge: -259639920 -981946043 multi 2 length 7215 id 82
+Single edge: 981946043 259639920 multi 2 length 7215 id -82
+Single edge: 512664448 -450220836 multi 1 length 7555 id 83
+Single edge: 450220836 -512664448 multi 1 length 7555 id -83
+Single edge: 512664448 -124854333 multi 1 length 9985 id 84
+Single edge: 124854333 -512664448 multi 1 length 9985 id -84
+Single edge: -34727045 364486310 multi 1 length 4397 id 85
+Single edge: -364486310 34727045 multi 1 length 4397 id -85
+Single edge: -34727045 -11936837 multi 1 length 2360 id 86
+Single edge: 11936837 34727045 multi 1 length 2360 id -86
+Single edge: -11936837 746485219 multi 2 length 3580 id 87
+Single edge: -746485219 11936837 multi 2 length 3580 id -87
+Single edge: 800428839 -925561843 multi 2 length 2145 id 88
+Single edge: 925561843 -800428839 multi 2 length 2145 id -88
+Single edge: -294919065 -674879729 multi 1 length 2381 id 89
+Single edge: 674879729 294919065 multi 1 length 2381 id -89
+Single edge: -746485219 -93030876 multi 1 length 6447 id 90
+Single edge: 93030876 746485219 multi 1 length 6447 id -90
+Single edge: 939967153 395280523 multi 1 length 2692 id 91
+Single edge: -395280523 -939967153 multi 1 length 2692 id -91
+Single edge: 939967153 59762779 multi 1 length 15897 id 92
+Single edge: -59762779 -939967153 multi 1 length 15897 id -92
+Single edge: -382426524 459332174 multi 2 length 23764 id 93
+Single edge: -459332174 382426524 multi 2 length 23764 id -93
+Single edge: -382426524 -527806755 multi 2 length 613 id 94
+Single edge: 527806755 382426524 multi 2 length 613 id -94
+Single edge: 880775232 -566685922 multi 1 length 299 id 95
+Single edge: 566685922 -880775232 multi 1 length 299 id -95
+Single edge: 572757710 -936117463 multi 1 length 2135 id 96
+Single edge: 936117463 -572757710 multi 1 length 2135 id -96
+Single edge: 572757710 -936117463 multi 1 length 1189 id 97
+Single edge: 936117463 -572757710 multi 1 length 1189 id -97
+Single edge: 766035014 457756756 multi 1 length 1639 id 98
+Single edge: -457756756 -766035014 multi 1 length 1639 id -98
+Single edge: 766035014 457756756 multi 1 length 1555 id 99
+Single edge: -457756756 -766035014 multi 1 length 1555 id -99
+Single edge: 930303070 -65570347 multi 2 length 9226 id 100
+Single edge: 65570347 -930303070 multi 2 length 9226 id -100
+Single edge: 930303070 493240516 multi 2 length 350 id 101
+Single edge: -493240516 -930303070 multi 2 length 350 id -101
+Single edge: -145532656 282225160 multi 1 length 8486 id 102
+Single edge: -282225160 145532656 multi 1 length 8486 id -102
+Single edge: -145532656 -430728152 multi 1 length 4375 id 103
+Single edge: 430728152 145532656 multi 1 length 4375 id -103
+Single edge: -725387691 -904103709 multi 1 length 756 id 104
+Single edge: 904103709 725387691 multi 1 length 756 id -104
+Single edge: -941819580 4188308 multi 1 length 717 id 105
+Single edge: -4188308 941819580 multi 1 length 717 id -105
+Single edge: 420586568 -623078492 multi 1 length 619 id 106
+Single edge: 623078492 -420586568 multi 1 length 619 id -106
+Single edge: 420586568 156676728 multi 1 length 455 id 107
+Single edge: -156676728 -420586568 multi 1 length 455 id -107
+Single edge: 163458425 -841668113 multi 1 length 2115 id 108
+Single edge: 841668113 -163458425 multi 1 length 2115 id -108
+Single edge: -133421473 758772711 multi 2 length 10826 id 109
+Single edge: -758772711 133421473 multi 2 length 10826 id -109
+Single edge: -133421473 -415575965 multi 1 length 2715 id 110
+Single edge: 415575965 133421473 multi 1 length 2715 id -110
+Single edge: -610742772 -63994974 multi 1 length 1948 id 111
+Single edge: 63994974 610742772 multi 1 length 1948 id -111
+Single edge: -700243387 931388402 multi 1 length 22817 id 112
+Single edge: -931388402 700243387 multi 1 length 22817 id -112
+Single edge: -700243387 -903586535 multi 2 length 32 id 113
+Single edge: 903586535 700243387 multi 2 length 32 id -113
+Single edge: -364486310 -824710541 multi 1 length 5119 id 114
+Single edge: 824710541 364486310 multi 1 length 5119 id -114
+Single edge: -364486310 487973603 multi 2 length 35588 id 115
+Single edge: -487973603 364486310 multi 2 length 35588 id -115
+Single edge: -903586535 -893219723 multi 1 length 4959 id 116
+Single edge: 893219723 903586535 multi 1 length 4959 id -116
+Single edge: -903586535 -893219723 multi 1 length 4943 id 117
+Single edge: 893219723 903586535 multi 1 length 4943 id -117
+Single edge: -450220836 493240516 multi 2 length 95 id 118
+Single edge: -493240516 450220836 multi 2 length 95 id -118
+Single edge: 259420435 -675558141 multi 2 length 6817 id 119
+Single edge: 675558141 -259420435 multi 2 length 6817 id -119
+Single edge: 816722538 -487274064 multi 1 length 7876 id 120
+Single edge: 487274064 -816722538 multi 1 length 7876 id -120
+Single edge: 816722538 -954031568 multi 2 length 9488 id 121
+Single edge: 954031568 -816722538 multi 2 length 9488 id -121
+Single edge: -888867728 619868238 multi 1 length 2077 id 122
+Single edge: -619868238 888867728 multi 1 length 2077 id -122
+Single edge: -331863421 282225160 multi 1 length 7910 id 123
+Single edge: -282225160 331863421 multi 1 length 7910 id -123
+Single edge: -331863421 391536315 multi 1 length 5839 id 124
+Single edge: -391536315 331863421 multi 1 length 5839 id -124
+Single edge: -351672486 -910662656 multi 2 length 2145 id 125
+Single edge: 910662656 351672486 multi 2 length 2145 id -125
+Single edge: 39295268 -602857070 multi 2 length 14114 id 126
+Single edge: 602857070 -39295268 multi 2 length 14114 id -126
+Single edge: -165670615 -904103709 multi 1 length 3630 id 127
+Single edge: 904103709 165670615 multi 1 length 3630 id -127
+Single edge: -619236255 619868238 multi 1 length 2091 id 128
+Single edge: -619868238 619236255 multi 1 length 2091 id -128
+Single edge: 215191081 877419160 multi 2 length 21886 id 129
+Single edge: -877419160 -215191081 multi 2 length 21886 id -129
+Single edge: 215191081 89398887 multi 1 length 4127 id 130
+Single edge: -89398887 -215191081 multi 1 length 4127 id -130
+Single edge: -238120188 178695914 multi 1 length 28186 id 131
+Single edge: -178695914 238120188 multi 1 length 28186 id -131
+Single edge: -238120188 178695914 multi 1 length 542 id 132
+Single edge: -178695914 238120188 multi 1 length 542 id -132
+Single edge: 466991008 623078492 multi 2 length 4301 id 133
+Single edge: -623078492 -466991008 multi 2 length 4301 id -133
+Single edge: -254518121 -567593260 multi 1 length 3510 id 134
+Single edge: 567593260 254518121 multi 1 length 3510 id -134
+Single edge: -131265871 831760931 multi 2 length 2 id 135
+Single edge: -831760931 131265871 multi 2 length 2 id -135
+Single edge: 75686009 931388402 multi 1 length 2200 id 136
+Single edge: -931388402 -75686009 multi 1 length 2200 id -136
+Single edge: 539958794 -238120188 multi 2 length 1243 id 137
+Single edge: 238120188 -539958794 multi 2 length 1243 id -137
+Single edge: 539958794 191094716 multi 1 length 6286 id 138
+Single edge: -191094716 -539958794 multi 1 length 6286 id -138
+Single edge: -358912888 626831768 multi 1 length 903 id 139
+Single edge: -626831768 358912888 multi 1 length 903 id -139
+Single edge: -358912888 404602268 multi 1 length 1737 id 140
+Single edge: -404602268 358912888 multi 1 length 1737 id -140
+Single edge: -487973603 -450220836 multi 1 length 3264 id 141
+Single edge: 450220836 487973603 multi 1 length 3264 id -141
+Single edge: -191094716 -566685922 multi 2 length 22 id 142
+Single edge: 566685922 191094716 multi 2 length 22 id -142
+Single edge: 153807017 527806755 multi 1 length 14958 id 143
+Single edge: -527806755 -153807017 multi 1 length 14958 id -143
+Single edge: 153807017 112714141 multi 1 length 349 id 144
+Single edge: -112714141 -153807017 multi 1 length 349 id -144
+Single edge: 112034224 -815535461 multi 2 length 1325 id 145
+Single edge: 815535461 -112034224 multi 2 length 1325 id -145
+Single edge: 112034224 -191863605 multi 2 length 1622 id 146
+Single edge: 191863605 -112034224 multi 2 length 1622 id -146
+Single edge: -4188308 -701842130 multi 1 length 2750 id 147
+Single edge: 701842130 4188308 multi 1 length 2750 id -147
+Single edge: 479358659 -415575965 multi 1 length 1710 id 148
+Single edge: 415575965 -479358659 multi 1 length 1710 id -148
+Single edge: -681167054 -358912888 multi 2 length 16093 id 149
+Single edge: 358912888 681167054 multi 2 length 16093 id -149
+Single edge: -46180238 404602268 multi 1 length 391 id 150
+Single edge: -404602268 46180238 multi 1 length 391 id -150
+Single edge: -46180238 -905470690 multi 1 length 6497 id 151
+Single edge: 905470690 46180238 multi 1 length 6497 id -151
+Single edge: -556726944 -346394555 multi 2 length 11578 id 152
+Single edge: 346394555 556726944 multi 2 length 11578 id -152
+Single edge: 487274064 -303948951 multi 2 length 222 id 153
+Single edge: 303948951 -487274064 multi 2 length 222 id -153
+Single edge: -675558141 527806755 multi 1 length 344 id 154
+Single edge: -527806755 675558141 multi 1 length 344 id -154
+Single edge: -675558141 626831768 multi 1 length 1184 id 155
+Single edge: -626831768 675558141 multi 1 length 1184 id -155
+Single edge: 420334557 -826509112 multi 1 length 2613 id 156
+Single edge: 826509112 -420334557 multi 1 length 2613 id -156
+Single edge: 981946043 -430728152 multi 1 length 567 id 157
+Single edge: 430728152 -981946043 multi 1 length 567 id -157
+Single edge: 303948951 -511965587 multi 1 length 605 id 158
+Single edge: 511965587 -303948951 multi 1 length 605 id -158
+Single edge: 436025003 717151226 multi 1 length 5709 id 159
+Single edge: -717151226 -436025003 multi 1 length 5709 id -159
+Single edge: 436025003 -701842130 multi 1 length 8059 id 160
+Single edge: 701842130 -436025003 multi 1 length 8059 id -160
+Single edge: -797797741 -950238029 multi 1 length 37772 id 161
+Single edge: 950238029 797797741 multi 1 length 37772 id -161
+Single edge: 877148224 -769064079 multi 1 length 2142 id 162
+Single edge: 769064079 -877148224 multi 1 length 2142 id -162
+Single edge: 229084971 -667650584 multi 1 length 228 id 163
+Single edge: 667650584 -229084971 multi 1 length 228 id -163
+Single edge: -988272320 974286428 multi 2 length 11043 id 164
+Single edge: -974286428 988272320 multi 2 length 11043 id -164
+Single edge: -988272320 -297151211 multi 1 length 11046 id 165
+Single edge: 297151211 988272320 multi 1 length 11046 id -165
+Single edge: -293863603 895897115 multi 2 length 4444 id 166
+Single edge: -895897115 293863603 multi 2 length 4444 id -166
+Single edge: -293863603 -758772711 multi 1 length 24094 id 167
+Single edge: 758772711 293863603 multi 1 length 24094 id -167
+Single edge: 928385578 -265204352 multi 1 length 464 id 168
+Single edge: 265204352 -928385578 multi 1 length 464 id -168
+Single edge: -572662049 406404417 multi 1 length 341 id 169
+Single edge: -406404417 572662049 multi 1 length 341 id -169
+Single edge: -572662049 -642694861 multi 2 length 10513 id 170
+Single edge: 642694861 572662049 multi 2 length 10513 id -170
+Single edge: 841668113 -63994974 multi 1 length 2076 id 171
+Single edge: 63994974 -841668113 multi 1 length 2076 id -171
+Single edge: 841668113 -769064079 multi 1 length 2111 id 172
+Single edge: 769064079 -841668113 multi 1 length 2111 id -172
+Single edge: 578782936 -872906364 multi 1 length 7203 id 173
+Single edge: 872906364 -578782936 multi 1 length 7203 id -173
+Single edge: 950238029 436025003 multi 2 length 29556 id 174
+Single edge: -436025003 -950238029 multi 2 length 29556 id -174
+Single edge: -701842130 -247956369 multi 2 length 4722 id 175
+Single edge: 247956369 701842130 multi 2 length 4722 id -175
+Single edge: 114320362 216097173 multi 1 length 1420 id 176
+Single edge: -216097173 -114320362 multi 1 length 1420 id -176
+Single edge: -391536315 -563239477 multi 1 length 11193 id 177
+Single edge: 563239477 391536315 multi 1 length 11193 id -177
+Single edge: 719516480 578782936 multi 2 length 235 id 178
+Single edge: -578782936 -719516480 multi 2 length 235 id -178
+Single edge: 247956369 -826509112 multi 2 length 1309 id 179
+Single edge: 826509112 -247956369 multi 2 length 1309 id -179
+Single edge: 619868238 -457756756 multi 2 length 3438 id 180
+Single edge: 457756756 -619868238 multi 2 length 3438 id -180
+Single edge: 954031568 521246797 multi 1 length 17050 id 181
+Single edge: -521246797 -954031568 multi 1 length 17050 id -181
+Single edge: 905470690 -178695914 multi 2 length 6296 id 182
+Single edge: 178695914 -905470690 multi 2 length 6296 id -182
+Single edge: 667650584 512664448 multi 2 length 11256 id 183
+Single edge: -512664448 -667650584 multi 2 length 11256 id -183
+Single edge: 216097173 -563842146 multi 2 length 5753 id 184
+Single edge: 563842146 -216097173 multi 2 length 5753 id -184
+Single edge: 941780266 -511965587 multi 1 length 683 id 185
+Single edge: 511965587 -941780266 multi 1 length 683 id -185
+Single edge: 974286428 -954249719 multi 1 length 9589 id 186
+Single edge: 954249719 -974286428 multi 1 length 9589 id -186
+Single edge: 974286428 -681167054 multi 1 length 8224 id 187
+Single edge: 681167054 -974286428 multi 1 length 8224 id -187
+Single edge: -783547487 -681167054 multi 1 length 808 id 188
+Single edge: 681167054 783547487 multi 1 length 808 id -188
+Single edge: -521246797 -297151211 multi 1 length 9035 id 189
+Single edge: 297151211 521246797 multi 1 length 9035 id -189
+
+Write graph test_output/consensus.k401/graph.with_haplome_duplication.dot, fasta test_output/consensus.k401/graph.with_haplome_duplication.fasta
+Simple bulge in the same haplome 1 and strand 1 572757710->-936117463
+Simple bulge in the same haplome 1 and strand 1 572757710->-936117463
+Simple bulge in the same haplome 1 and strand 2 936117463->-572757710
+Simple bulge in the same haplome 1 and strand 2 936117463->-572757710
+Total number of nodes: 388
+Total number of edges (non-short edges): 576 (486)
+Bicolored edges: 266
+Length of bicolored edges: 1429648
+Red edges: 126
+Length of red edges: 469798
+Multi 1 (non-short edges): 240 (230)
+Length: 1404224
+Multi 2 (non-short edges): 186 (148)
+Length: 1256674
+Multi 3 (non-short edges): 74 (44)
+Length: 122980
+Multi >3 (non-short edges): 76 (64)
+Length: 149016
+Genome 1 edges: 272
+Genome 1 length: 1084745
+Genome 2 edges: 339
+Genome 2 length: 1455941
+Imbalanced edges (non-short edges): 410 (344)
+Length: 1683866
+Synteny blocks multi (2)
+Linear: -737986525 467419660 -919479630 815535461 -278916761 -118968088 -528826098 420334557 346394555 multi 7
+Linear: -930303070 184166654 multi 4
+Linear: 978206283 -913679560 572757710 multi 3
+Linear: -950238029 -928385578 -662788261 981946043 multi 4
+Linear: 931388402 -376466428 156850653 153807017 multi 3
+Linear: 191094716 357575960 multi 3
+Linear: -76779636 -841601520 multi 2
+Linear: 746485219 126259895 multi 3
+Linear: 89398887 710304188 multi 3
+Linear: -284971721 820523878 multi 3
+Linear: 364486310 339846511 -725387691 multi 4
+Linear: -767632536 -379353899 multi 4
+Linear: 459332174 -736565553 multi 4
+Linear: 493240516 824710541 -427856248 -34727045 multi 4
+Circular: 682559101 156676728 682559101 multi 5
+Linear: -247956369 857744901 941819580 466991008 479358659 multi 4
+Linear: 783547487 954249719 multi 2
+Linear: 572662049 303948951 multi 3
+Linear: -954031568 -401604840 multi 3
+Linear: -759386375 587223573 630480334 720916544 multi 4
+Linear: -566685922 -606188099 multi 3
+Non-branching: 521246797 434707165 multi 2
+Circular: -271590561 -602857070 -271590561 multi 9
+Linear: 293863603 -856585223 93030876 multi 3
+Linear: -112034224 -382426524 multi 4
+Linear: -259420435 872906364 multi 3
+Non-branching: 49003755 -145532656 multi 2
+Linear: -472882290 -133421473 multi 3
+Linear: -905470690 -700243387 multi 3
+Linear: -925561843 -556726944 multi 4
+Linear: 295013196 65570347 multi 3
+Linear: -133516968 -985739290 816722538 multi 3
+Linear: -487274064 -351672486 multi 3
+Linear: -539958794 215191081 multi 3
+Linear: -642694861 883222884 multi 4
+Linear: -75686009 658892919 multi 3
+Non-branching: 479804555 -254518121 multi 2
+Linear: -826509112 -719516480 191863605 -131265871 multi 5
+Linear: -124854333 -487973603 multi 3
+Linear: 717151226 -4188308 multi 2
+Linear: 46180238 -626831768 multi 2
+Linear: -941780266 -112714141 multi 2
+Linear: -511965587 -282225160 multi 2
+Non-branching: -63994974 -267419625 multi 2
+Non-branching: 49003755 265204352 multi 2
+Assign id: -737986525 467419660 -919479630 815535461 -278916761 -118968088 -528826098 420334557 346394555 multi 7 id 190
+Assign id: -346394555 -420334557 528826098 118968088 278916761 -815535461 919479630 -467419660 737986525 multi 7 id -190
+Assign id: -930303070 184166654 multi 4 id 191
+Assign id: -184166654 930303070 multi 4 id -191
+Assign id: 978206283 -913679560 572757710 multi 3 id 192
+Assign id: -572757710 913679560 -978206283 multi 3 id -192
+Assign id: -950238029 -928385578 -662788261 981946043 multi 4 id 193
+Assign id: -981946043 662788261 928385578 950238029 multi 4 id -193
+Assign id: 931388402 -376466428 156850653 153807017 multi 3 id 194
+Assign id: -153807017 -156850653 376466428 -931388402 multi 3 id -194
+Assign id: 191094716 357575960 multi 3 id 195
+Assign id: -357575960 -191094716 multi 3 id -195
+Assign id: -76779636 -841601520 multi 2 id 196
+Assign id: 841601520 76779636 multi 2 id -196
+Assign id: 746485219 126259895 multi 3 id 197
+Assign id: -126259895 -746485219 multi 3 id -197
+Assign id: 89398887 710304188 multi 3 id 198
+Assign id: -710304188 -89398887 multi 3 id -198
+Assign id: -284971721 820523878 multi 3 id 199
+Assign id: -820523878 284971721 multi 3 id -199
+Assign id: 364486310 339846511 -725387691 multi 4 id 200
+Assign id: 725387691 -339846511 -364486310 multi 4 id -200
+Assign id: -767632536 -379353899 multi 4 id 201
+Assign id: 379353899 767632536 multi 4 id -201
+Assign id: 459332174 -736565553 multi 4 id 202
+Assign id: 736565553 -459332174 multi 4 id -202
+Assign id: 493240516 824710541 -427856248 -34727045 multi 4 id 203
+Assign id: 34727045 427856248 -824710541 -493240516 multi 4 id -203
+Assign id: 682559101 156676728 682559101 multi 5 id 204
+Assign id: -682559101 -156676728 -682559101 multi 5 id -204
+Assign id: -247956369 857744901 941819580 466991008 479358659 multi 4 id 205
+Assign id: -479358659 -466991008 -941819580 -857744901 247956369 multi 4 id -205
+Assign id: 783547487 954249719 multi 2 id 206
+Assign id: -954249719 -783547487 multi 2 id -206
+Assign id: 572662049 303948951 multi 3 id 207
+Assign id: -303948951 -572662049 multi 3 id -207
+Assign id: -954031568 -401604840 multi 3 id 208
+Assign id: 401604840 954031568 multi 3 id -208
+Assign id: -759386375 587223573 630480334 720916544 multi 4 id 209
+Assign id: -720916544 -630480334 -587223573 759386375 multi 4 id -209
+Assign id: -566685922 -606188099 multi 3 id 210
+Assign id: 606188099 566685922 multi 3 id -210
+Assign id: 521246797 434707165 multi 2 id 211
+Assign id: -434707165 -521246797 multi 2 id -211
+Assign id: -271590561 -602857070 -271590561 multi 9 id 212
+Assign id: 271590561 602857070 271590561 multi 9 id -212
+Assign id: 293863603 -856585223 93030876 multi 3 id 213
+Assign id: -93030876 856585223 -293863603 multi 3 id -213
+Assign id: -112034224 -382426524 multi 4 id 214
+Assign id: 382426524 112034224 multi 4 id -214
+Assign id: -259420435 872906364 multi 3 id 215
+Assign id: -872906364 259420435 multi 3 id -215
+Assign id: 49003755 -145532656 multi 2 id 216
+Assign id: 145532656 -49003755 multi 2 id -216
+Assign id: -472882290 -133421473 multi 3 id 217
+Assign id: 133421473 472882290 multi 3 id -217
+Assign id: -905470690 -700243387 multi 3 id 218
+Assign id: 700243387 905470690 multi 3 id -218
+Assign id: -925561843 -556726944 multi 4 id 219
+Assign id: 556726944 925561843 multi 4 id -219
+Assign id: 295013196 65570347 multi 3 id 220
+Assign id: -65570347 -295013196 multi 3 id -220
+Assign id: -133516968 -985739290 816722538 multi 3 id 221
+Assign id: -816722538 985739290 133516968 multi 3 id -221
+Assign id: -487274064 -351672486 multi 3 id 222
+Assign id: 351672486 487274064 multi 3 id -222
+Assign id: -539958794 215191081 multi 3 id 223
+Assign id: -215191081 539958794 multi 3 id -223
+Assign id: -642694861 883222884 multi 4 id 224
+Assign id: -883222884 642694861 multi 4 id -224
+Assign id: -75686009 658892919 multi 3 id 225
+Assign id: -658892919 75686009 multi 3 id -225
+Assign id: 479804555 -254518121 multi 2 id 226
+Assign id: 254518121 -479804555 multi 2 id -226
+Assign id: -826509112 -719516480 191863605 -131265871 multi 5 id 227
+Assign id: 131265871 -191863605 719516480 826509112 multi 5 id -227
+Assign id: -124854333 -487973603 multi 3 id 228
+Assign id: 487973603 124854333 multi 3 id -228
+Assign id: 717151226 -4188308 multi 2 id 229
+Assign id: 4188308 -717151226 multi 2 id -229
+Assign id: 46180238 -626831768 multi 2 id 230
+Assign id: 626831768 -46180238 multi 2 id -230
+Assign id: -941780266 -112714141 multi 2 id 231
+Assign id: 112714141 941780266 multi 2 id -231
+Assign id: -511965587 -282225160 multi 2 id 232
+Assign id: 282225160 511965587 multi 2 id -232
+Assign id: -63994974 -267419625 multi 2 id 233
+Assign id: 267419625 63994974 multi 2 id -233
+Assign id: 49003755 265204352 multi 2 id 234
+Assign id: -265204352 -49003755 multi 2 id -234
+Synteny blocks multi (3)
+Linear: -975833915 797797741 -434707165 -988272320 multi 5
+Non-branching: -72963145 230295172 multi 3
+Linear: -936117463 -709719282 176899756 406404417 563239477 479804555 -674879729 -33186328 904103709 multi 5
+Linear: -49003755 -165670615 567593260 multi 4
+Non-branching: 650629588 667650584 multi 3
+Assign id: -975833915 797797741 -434707165 -988272320 multi 5 id 235
+Assign id: 988272320 434707165 -797797741 975833915 multi 5 id -235
+Assign id: -72963145 230295172 multi 3 id 236
+Assign id: -230295172 72963145 multi 3 id -236
+Assign id: -936117463 -709719282 176899756 406404417 563239477 479804555 -674879729 -33186328 904103709 multi 5 id 237
+Assign id: -904103709 33186328 674879729 -479804555 -563239477 -406404417 -176899756 709719282 936117463 multi 5 id -237
+Assign id: -49003755 -165670615 567593260 multi 4 id 238
+Assign id: -567593260 165670615 49003755 multi 4 id -238
+Assign id: 650629588 667650584 multi 3 id 239
+Assign id: -667650584 -650629588 multi 3 id -239
+Synteny blocks multi (4)
+Linear: -841668113 -877148224 610742772 -800428839 -114320362 -650629588 -72963145 457702391 563842146 229084971 -948987951 267419625 163458425 769064079 multi 11
+Assign id: -841668113 -877148224 610742772 -800428839 -114320362 -650629588 -72963145 457702391 563842146 229084971 -948987951 267419625 163458425 769064079 multi 11 id 240
+Assign id: -769064079 -163458425 -267419625 948987951 -229084971 -563842146 -457702391 72963145 650629588 114320362 800428839 -610742772 877148224 841668113 multi 11 id -240
+Iteration stops at multi 4
+
+
+Circular components: 4
+Linear components: 76
+Complex components: 8
+All components: 88
+
+Write graph test_output/consensus.k401/graph.with_haplome_imbalanced.dot, fasta test_output/consensus.k401/graph.with_haplome_imbalanced.fasta
+Simple bulge in the same haplome 1 and strand 1 572757710->-936117463
+Simple bulge in the same haplome 1 and strand 1 572757710->-936117463
+Simple bulge in the same haplome 1 and strand 2 936117463->-572757710
+Simple bulge in the same haplome 1 and strand 2 936117463->-572757710
+Total number of nodes: 388
+Total number of edges (non-short edges): 576 (486)
+Bicolored edges: 266
+Length of bicolored edges: 1429648
+Red edges: 126
+Length of red edges: 469798
+Multi 1 (non-short edges): 240 (230)
+Length: 1404224
+Multi 2 (non-short edges): 186 (148)
+Length: 1256674
+Multi 3 (non-short edges): 74 (44)
+Length: 122980
+Multi >3 (non-short edges): 76 (64)
+Length: 149016
+Genome 1 edges: 272
+Genome 1 length: 1084745
+Genome 2 edges: 339
+Genome 2 length: 1455941
+Imbalanced edges (non-short edges): 410 (344)
+Length: 1683866
+Simple bulge in the same haplome 1 and strand 1 572757710->-936117463
+Simple bulge in the same haplome 1 and strand 1 572757710->-936117463
+Simple bulge in the same haplome 1 and strand 2 936117463->-572757710
+Simple bulge in the same haplome 1 and strand 2 936117463->-572757710
+Simple bulge in the same haplome 1 and strand 1 572757710->-936117463
+Simple bulge in the same haplome 1 and strand 1 572757710->-936117463
+Simple bulge in the same haplome 1 and strand 2 936117463->-572757710
+Simple bulge in the same haplome 1 and strand 2 936117463->-572757710
+Original graph size: 388
+
+Bulge and whirl removal:
+Simple bulge: -39295268->-877419160, sim (length) 0.0653818, color1 2, color2 1
+Simple bulge: 877419160->39295268, sim (length) 0.0653818, color1 2, color2 1
+Simple bulge: 572757710->-936117463, sim (length) 0.626577, color1 1, color2 1
+Simple bulge: 936117463->-572757710, sim (length) 0.626577, color1 1, color2 1
+Simple bulge: 766035014->457756756, sim (length) 0.760757, color1 2, color2 1
+Simple bulge: -457756756->-766035014, sim (length) 0.760757, color1 2, color2 1
+Simple bulge: -903586535->-893219723, sim (length) 0.606439, color1 2, color2 1
+Simple bulge: 893219723->903586535, sim (length) 0.606439, color1 2, color2 1
+Simple bulge: -238120188->178695914, sim (length) 0.032987, color1 2, color2 1
+Simple bulge: -178695914->238120188, sim (length) 0.032987, color1 2, color2 1
+Graph size after simple bulge removal: 368, removed_bulges: 10
+Simple bulge: -913679560->-709719282, sim (length) 0.500705, color1 2, color2 1
+Simple bulge: 709719282->913679560, sim (length) 0.500705, color1 2, color2 1
+General whirl (min multi 4, color 1, length 259): 682559101->156676728->682559101
+General whirl (min multi 4, color 1, length 259): -682559101->-156676728->-682559101
+General whirl (min multi 7, color 0, length 10337): -271590561->-602857070->-271590561
+General whirl (min multi 7, color 0, length 10337): 271590561->602857070->271590561
+Graph size after whirl removal: 360 removed_whirls: 4
+Graph size after whirl removal: 360 removed_whirls: 0
+Round 1 finished
+Graph size after simple bulge removal: 360, removed_bulges: 0
+Graph size after whirl removal: 360 removed_whirls: 0
+Round 2 finished
+Removed whirls: 4
+Before complex bulge finished
+
+Complex bulges 2+2
+Run edlib for path1 (length 11056): -434707165->-988272320->-297151211; path2 (length 9045): -434707165->-521246797->-297151211; identity 0.563559
+Run edlib for path1 (length 6812): 811688893->-985739290; path2 (length 6974): 811688893->-133516968->-985739290; identity 0.597552
+Run edlib for path1 (length 2941): 737986525->131265871; path2 (length 2945): 737986525->-831760931->131265871; identity 0.652759
+Run edlib for path1 (length 14208): 710304188->-76779636; path2 (length 10729): 710304188->-491415588->-76779636; identity 0.574874
+Run edlib for path1 (length 7518): -427856248->-11936837; path2 (length 2369): -427856248->-34727045->-11936837
+Run edlib for path1 (length 6813): -978206283->811688893->-985739290; path2 (length 7005): -978206283->-133516968->-985739290; identity 0.597849
+Run edlib for path1 (length 4331): -978206283->-133516968; path2 (length 4301): -978206283->811688893->-133516968; identity 0.615326
+Run edlib for path1 (length 3353): -467419660->737986525->131265871; path2 (length 3362): -467419660->-831760931->131265871; identity 0.636451
+Run edlib for path1 (length 3360): -467419660->-831760931; path2 (length 3355): -467419660->737986525->-831760931; identity 0.637667
+Run edlib for path1 (length 2145): 163458425->769064079->-877148224; path2 (length 2145): 163458425->-841668113->-877148224; identity 0.693062
+Run edlib for path1 (length 2115): 163458425->-841668113; path2 (length 2114): 163458425->769064079->-841668113; identity 0.682819
+Run edlib for path1 (length 3510): -254518121->-567593260; path2 (length 3509): -254518121->250785005->-567593260; identity 0.634011
+Run edlib for path1 (length 3353): -131265871->-737986525->467419660; path2 (length 3362): -131265871->831760931->467419660; identity 0.635485
+Run edlib for path1 (length 2941): -131265871->-737986525; path2 (length 2945): -131265871->831760931->-737986525; identity 0.652377
+Run edlib for path1 (length 2172): 267419625->163458425->-841668113; path2 (length 2154): 267419625->63994974->-841668113; identity 0.686176
+Run edlib for path1 (length 7005): 985739290->133516968->978206283; path2 (length 6813): 985739290->-811688893->978206283; identity 0.597799
+Run edlib for path1 (length 6812): 985739290->-811688893; path2 (length 6974): 985739290->133516968->-811688893; identity 0.597203
+Run edlib for path1 (length 2145): 877148224->-769064079->-163458425; path2 (length 2145): 877148224->841668113->-163458425; identity 0.693062
+Run edlib for path1 (length 2142): 877148224->-769064079; path2 (length 2141): 877148224->841668113->-769064079; identity 0.683577
+Run edlib for path1 (length 3510): 567593260->254518121; path2 (length 3509): 567593260->-250785005->254518121; identity 0.635191
+Run edlib for path1 (length 4331): 133516968->978206283; path2 (length 4301): 133516968->-811688893->978206283; identity 0.61621
+Run edlib for path1 (length 2172): 841668113->-163458425->-267419625; path2 (length 2154): 841668113->-63994974->-267419625; identity 0.68595
+Run edlib for path1 (length 2115): 841668113->-163458425; path2 (length 2114): 841668113->-769064079->-163458425; identity 0.682119
+Run edlib for path1 (length 7518): 11936837->427856248; path2 (length 2369): 11936837->34727045->427856248
+Run edlib for path1 (length 14208): 76779636->-710304188; path2 (length 10729): 76779636->491415588->-710304188; identity 0.574393
+Run edlib for path1 (length 3360): 831760931->467419660; path2 (length 3355): 831760931->-737986525->467419660; identity 0.638458
+Run edlib for path1 (length 2142): 769064079->-877148224; path2 (length 2141): 769064079->-841668113->-877148224; identity 0.683461
+Run edlib for path1 (length 11056): 297151211->988272320->434707165; path2 (length 9045): 297151211->521246797->434707165; identity 0.562683
+Complex bulge: path1 (length 2142, min multi 1, color 2): 877148224->-769064079; path2 (length 2141, min multi 1, color 2): 877148224->841668113->-769064079; identity 0.683577
+Complex bulge: path1 (length 2142, min multi 1, color 2): 769064079->-877148224; path2 (length 2141, min multi 1, color 2): 769064079->-841668113->-877148224; identity 0.683577
+Complex bulge: path1 (length 2941, min multi 1, color 1): 737986525->131265871; path2 (length 2945, min multi 1, color 1): 737986525->-831760931->131265871; identity 0.652759
+Complex bulge: path1 (length 2941, min multi 1, color 1): -131265871->-737986525; path2 (length 2945, min multi 1, color 1): -131265871->831760931->-737986525; identity 0.652759
+Complex bulge: path1 (length 2172, min multi 1, color 2): 267419625->163458425->-841668113; path2 (length 2154, min multi 1, color 2): 267419625->63994974->-841668113; identity 0.686176
+Complex bulge: path1 (length 2172, min multi 1, color 2): 841668113->-163458425->-267419625; path2 (length 2154, min multi 1, color 2): 841668113->-63994974->-267419625; identity 0.686176
+Graph size after remove bulges with two multi-edge paths: 348, removed_paths: 6
+Simple bulge: -467419660->131265871, sim (length) 0.637843, color1 2, color2 1
+Simple bulge: -131265871->467419660, sim (length) 0.637843, color1 2, color2 1
+Simple bulge: 267419625->-877148224, sim (length) 0.699288, color1 2, color2 2
+Simple bulge: 877148224->-267419625, sim (length) 0.699288, color1 2, color2 2
+Graph size after whirl removal: 342 removed_whirls: 0
+Round 1 finished
+Simple bulge: -610742772->-267419625, sim (length) 0.476587, color1 2, color2 2
+Simple bulge: 267419625->610742772, sim (length) 0.476587, color1 2, color2 2
+Run edlib for path1 (length 11056): -434707165->-988272320->-297151211; path2 (length 9045): -434707165->-521246797->-297151211; identity 0.563559
+Run edlib for path1 (length 6812): 811688893->-985739290; path2 (length 6974): 811688893->-133516968->-985739290; identity 0.597552
+Run edlib for path1 (length 14208): 710304188->-76779636; path2 (length 10729): 710304188->-491415588->-76779636; identity 0.574874
+Run edlib for path1 (length 7518): -427856248->-11936837; path2 (length 2369): -427856248->-34727045->-11936837
+Run edlib for path1 (length 6813): -978206283->811688893->-985739290; path2 (length 7005): -978206283->-133516968->-985739290; identity 0.597849
+Run edlib for path1 (length 4331): -978206283->-133516968; path2 (length 4301): -978206283->811688893->-133516968; identity 0.615326
+Run edlib for path1 (length 3510): -254518121->-567593260; path2 (length 3509): -254518121->250785005->-567593260; identity 0.634011
+Run edlib for path1 (length 7005): 985739290->133516968->978206283; path2 (length 6813): 985739290->-811688893->978206283; identity 0.597799
+Run edlib for path1 (length 6812): 985739290->-811688893; path2 (length 6974): 985739290->133516968->-811688893; identity 0.597203
+Run edlib for path1 (length 3510): 567593260->254518121; path2 (length 3509): 567593260->-250785005->254518121; identity 0.635191
+Run edlib for path1 (length 4331): 133516968->978206283; path2 (length 4301): 133516968->-811688893->978206283; identity 0.61621
+Run edlib for path1 (length 7518): 11936837->427856248; path2 (length 2369): 11936837->34727045->427856248
+Run edlib for path1 (length 14208): 76779636->-710304188; path2 (length 10729): 76779636->491415588->-710304188; identity 0.574393
+Run edlib for path1 (length 11056): 297151211->988272320->434707165; path2 (length 9045): 297151211->521246797->434707165; identity 0.562683
+Graph size after remove bulges with two multi-edge paths: 338, removed_paths: 0
+Graph size after whirl removal: 338 removed_whirls: 0
+Round 2 finished
+Removed whirls: 0
+Removed complex bulges: 6
+
+Complex bulges 3+3
+Run edlib for path1 (length 11056): -434707165->-988272320->-297151211; path2 (length 9045): -434707165->-521246797->-297151211; identity 0.563559
+Run edlib for path1 (length 6812): 811688893->-985739290; path2 (length 6974): 811688893->-133516968->-985739290; identity 0.597552
+Run edlib for path1 (length 7583): -250785005->254518121->-479804555; path2 (length 7736): -250785005->33186328->674879729->-479804555; identity 0.603047
+Run edlib for path1 (length 4667): 75981490->521449414; path2 (length 8318): 75981490->-954249719->-783547487->521449414
+Run edlib for path1 (length 14208): 710304188->-76779636; path2 (length 10729): 710304188->-491415588->-76779636; identity 0.574874
+Run edlib for path1 (length 19998): -491415588->-895897115; path2 (length 23651): -491415588->-76779636->-841601520->-895897115; identity 0.546856
+Run edlib for path1 (length 7518): -427856248->-11936837; path2 (length 2369): -427856248->-34727045->-11936837
+Run edlib for path1 (length 6813): -978206283->811688893->-985739290; path2 (length 7005): -978206283->-133516968->-985739290; identity 0.597849
+Run edlib for path1 (length 4331): -978206283->-133516968; path2 (length 4301): -978206283->811688893->-133516968; identity 0.615326
+Run edlib for path1 (length 4667): -521449414->-75981490; path2 (length 8318): -521449414->783547487->954249719->-75981490
+Run edlib for path1 (length 7831): 650629588->114320362->216097173->-563842146; path2 (length 4477): 650629588->667650584->-229084971->-563842146
+Run edlib for path1 (length 3646): -33186328->904103709->165670615; path2 (length 3628): -33186328->250785005->-567593260->165670615; identity 0.636035
+Run edlib for path1 (length 6141): 259639920->-578782936; path2 (length 10931): 259639920->-259420435->872906364->-578782936
+Run edlib for path1 (length 7555): 512664448->-450220836; path2 (length 13692): 512664448->-124854333->-487973603->-450220836
+Run edlib for path1 (length 8486): -145532656->282225160; path2 (length 18947): -145532656->-430728152->-331863421->282225160
+Run edlib for path1 (length 5119): -364486310->-824710541; path2 (length 4689): -364486310->34727045->427856248->-824710541; identity 0.635975
+Run edlib for path1 (length 5119): 824710541->364486310; path2 (length 4689): 824710541->-427856248->-34727045->364486310; identity 0.636348
+Run edlib for path1 (length 3646): -165670615->-904103709->33186328; path2 (length 3628): -165670615->567593260->-250785005->33186328; identity 0.635789
+Run edlib for path1 (length 3510): -254518121->-567593260; path2 (length 3509): -254518121->250785005->-567593260; identity 0.634011
+Run edlib for path1 (length 7005): 985739290->133516968->978206283; path2 (length 6813): 985739290->-811688893->978206283; identity 0.597799
+Run edlib for path1 (length 6812): 985739290->-811688893; path2 (length 6974): 985739290->133516968->-811688893; identity 0.597203
+Run edlib for path1 (length 1737): -358912888->404602268; path2 (length 1754): -358912888->626831768->-46180238->404602268; identity 0.94221
+Run edlib for path1 (length 8486): -282225160->145532656; path2 (length 18947): -282225160->331863421->430728152->145532656
+Run edlib for path1 (length 3510): 567593260->254518121; path2 (length 3509): 567593260->-250785005->254518121; identity 0.635191
+Run edlib for path1 (length 19998): 895897115->491415588; path2 (length 23651): 895897115->841601520->76779636->491415588; identity 0.546678
+Run edlib for path1 (length 4331): 133516968->978206283; path2 (length 4301): 133516968->-811688893->978206283; identity 0.61621
+Run edlib for path1 (length 6141): 578782936->-259639920; path2 (length 10931): 578782936->-872906364->259420435->-259639920
+Run edlib for path1 (length 7555): 450220836->-512664448; path2 (length 13692): 450220836->487973603->124854333->-512664448
+Run edlib for path1 (length 7518): 11936837->427856248; path2 (length 2369): 11936837->34727045->427856248
+Run edlib for path1 (length 14208): 76779636->-710304188; path2 (length 10729): 76779636->491415588->-710304188; identity 0.574393
+Run edlib for path1 (length 7583): 479804555->-254518121->250785005; path2 (length 7736): 479804555->-674879729->-33186328->250785005; identity 0.604729
+Run edlib for path1 (length 8224): 974286428->-681167054; path2 (length 11413): 974286428->-954249719->-783547487->-681167054; identity 0.55687
+Run edlib for path1 (length 7831): 563842146->-216097173->-114320362->-650629588; path2 (length 4477): 563842146->229084971->-667650584->-650629588
+Run edlib for path1 (length 1737): -404602268->358912888; path2 (length 1754): -404602268->46180238->-626831768->358912888; identity 0.94221
+Run edlib for path1 (length 8224): 681167054->-974286428; path2 (length 11413): 681167054->783547487->954249719->-974286428; identity 0.55654
+Run edlib for path1 (length 11056): 297151211->988272320->434707165; path2 (length 9045): 297151211->521246797->434707165; identity 0.562683
+Complex bulge: path1 (length 1737, min multi 1, color 1): -358912888->404602268; path2 (length 1754, min multi 1, color 2): -358912888->626831768->-46180238->404602268; identity 0.94221
+Complex bulge: path1 (length 1737, min multi 1, color 1): -404602268->358912888; path2 (length 1754, min multi 1, color 2): -404602268->46180238->-626831768->358912888; identity 0.94221
+Graph size after remove bulges with two multi-edge paths: 330, removed_paths: 2
+Graph size after whirl removal: 330 removed_whirls: 0
+Round 1 finished
+Run edlib for path1 (length 11056): -434707165->-988272320->-297151211; path2 (length 9045): -434707165->-521246797->-297151211; identity 0.563559
+Run edlib for path1 (length 6812): 811688893->-985739290; path2 (length 6974): 811688893->-133516968->-985739290; identity 0.597552
+Run edlib for path1 (length 7583): -250785005->254518121->-479804555; path2 (length 7736): -250785005->33186328->674879729->-479804555; identity 0.603047
+Run edlib for path1 (length 4667): 75981490->521449414; path2 (length 8318): 75981490->-954249719->-783547487->521449414
+Run edlib for path1 (length 14208): 710304188->-76779636; path2 (length 10729): 710304188->-491415588->-76779636; identity 0.574874
+Run edlib for path1 (length 19998): -491415588->-895897115; path2 (length 23651): -491415588->-76779636->-841601520->-895897115; identity 0.546856
+Run edlib for path1 (length 7518): -427856248->-11936837; path2 (length 2369): -427856248->-34727045->-11936837
+Run edlib for path1 (length 6813): -978206283->811688893->-985739290; path2 (length 7005): -978206283->-133516968->-985739290; identity 0.597849
+Run edlib for path1 (length 4331): -978206283->-133516968; path2 (length 4301): -978206283->811688893->-133516968; identity 0.615326
+Run edlib for path1 (length 4667): -521449414->-75981490; path2 (length 8318): -521449414->783547487->954249719->-75981490
+Run edlib for path1 (length 7831): 650629588->114320362->216097173->-563842146; path2 (length 4477): 650629588->667650584->-229084971->-563842146
+Run edlib for path1 (length 3646): -33186328->904103709->165670615; path2 (length 3628): -33186328->250785005->-567593260->165670615; identity 0.636035
+Run edlib for path1 (length 6141): 259639920->-578782936; path2 (length 10931): 259639920->-259420435->872906364->-578782936
+Run edlib for path1 (length 7555): 512664448->-450220836; path2 (length 13692): 512664448->-124854333->-487973603->-450220836
+Run edlib for path1 (length 8486): -145532656->282225160; path2 (length 18947): -145532656->-430728152->-331863421->282225160
+Run edlib for path1 (length 5119): -364486310->-824710541; path2 (length 4689): -364486310->34727045->427856248->-824710541; identity 0.635975
+Run edlib for path1 (length 5119): 824710541->364486310; path2 (length 4689): 824710541->-427856248->-34727045->364486310; identity 0.636348
+Run edlib for path1 (length 3646): -165670615->-904103709->33186328; path2 (length 3628): -165670615->567593260->-250785005->33186328; identity 0.635789
+Run edlib for path1 (length 3510): -254518121->-567593260; path2 (length 3509): -254518121->250785005->-567593260; identity 0.634011
+Run edlib for path1 (length 7005): 985739290->133516968->978206283; path2 (length 6813): 985739290->-811688893->978206283; identity 0.597799
+Run edlib for path1 (length 6812): 985739290->-811688893; path2 (length 6974): 985739290->133516968->-811688893; identity 0.597203
+Run edlib for path1 (length 8486): -282225160->145532656; path2 (length 18947): -282225160->331863421->430728152->145532656
+Run edlib for path1 (length 3510): 567593260->254518121; path2 (length 3509): 567593260->-250785005->254518121; identity 0.635191
+Run edlib for path1 (length 19998): 895897115->491415588; path2 (length 23651): 895897115->841601520->76779636->491415588; identity 0.546678
+Run edlib for path1 (length 4331): 133516968->978206283; path2 (length 4301): 133516968->-811688893->978206283; identity 0.61621
+Run edlib for path1 (length 6141): 578782936->-259639920; path2 (length 10931): 578782936->-872906364->259420435->-259639920
+Run edlib for path1 (length 7555): 450220836->-512664448; path2 (length 13692): 450220836->487973603->124854333->-512664448
+Run edlib for path1 (length 7518): 11936837->427856248; path2 (length 2369): 11936837->34727045->427856248
+Run edlib for path1 (length 14208): 76779636->-710304188; path2 (length 10729): 76779636->491415588->-710304188; identity 0.574393
+Run edlib for path1 (length 7583): 479804555->-254518121->250785005; path2 (length 7736): 479804555->-674879729->-33186328->250785005; identity 0.604729
+Run edlib for path1 (length 8224): 974286428->-681167054; path2 (length 11413): 974286428->-954249719->-783547487->-681167054; identity 0.55687
+Run edlib for path1 (length 7831): 563842146->-216097173->-114320362->-650629588; path2 (length 4477): 563842146->229084971->-667650584->-650629588
+Run edlib for path1 (length 8224): 681167054->-974286428; path2 (length 11413): 681167054->783547487->954249719->-974286428; identity 0.55654
+Run edlib for path1 (length 11056): 297151211->988272320->434707165; path2 (length 9045): 297151211->521246797->434707165; identity 0.562683
+Graph size after remove bulges with two multi-edge paths: 330, removed_paths: 0
+Graph size after whirl removal: 330 removed_whirls: 0
+Round 2 finished
+Removed whirls: 0
+Removed complex bulges: 2
+
+Complex bulges 4+4
+Run edlib for path1 (length 11056): -434707165->-988272320->-297151211; path2 (length 9045): -434707165->-521246797->-297151211; identity 0.563559
+Run edlib for path1 (length 6812): 811688893->-985739290; path2 (length 6974): 811688893->-133516968->-985739290; identity 0.597552
+Run edlib for path1 (length 7583): -250785005->254518121->-479804555; path2 (length 7736): -250785005->33186328->674879729->-479804555; identity 0.603047
+Run edlib for path1 (length 4667): 75981490->521449414; path2 (length 8318): 75981490->-954249719->-783547487->521449414
+Run edlib for path1 (length 14208): 710304188->-76779636; path2 (length 10729): 710304188->-491415588->-76779636; identity 0.574874
+Run edlib for path1 (length 3511): 948987951->-230295172->72963145; path2 (length 9539): 948987951->-229084971->-563842146->-457702391->72963145
+Run edlib for path1 (length 19998): -491415588->-895897115; path2 (length 23651): -491415588->-76779636->-841601520->-895897115; identity 0.546856
+Run edlib for path1 (length 7518): -427856248->-11936837; path2 (length 2369): -427856248->-34727045->-11936837
+Run edlib for path1 (length 6813): -978206283->811688893->-985739290; path2 (length 7005): -978206283->-133516968->-985739290; identity 0.597849
+Run edlib for path1 (length 4331): -978206283->-133516968; path2 (length 4301): -978206283->811688893->-133516968; identity 0.615326
+Run edlib for path1 (length 4667): -521449414->-75981490; path2 (length 8318): -521449414->783547487->954249719->-75981490
+Run edlib for path1 (length 236): 650629588->667650584->-229084971; path2 (length 17541): 650629588->114320362->800428839->948987951->-229084971
+Run edlib for path1 (length 7831): 650629588->114320362->216097173->-563842146; path2 (length 4477): 650629588->667650584->-229084971->-563842146
+Run edlib for path1 (length 3646): -33186328->904103709->165670615; path2 (length 3628): -33186328->250785005->-567593260->165670615; identity 0.636035
+Run edlib for path1 (length 6141): 259639920->-578782936; path2 (length 10931): 259639920->-259420435->872906364->-578782936
+Run edlib for path1 (length 7555): 512664448->-450220836; path2 (length 13692): 512664448->-124854333->-487973603->-450220836
+Run edlib for path1 (length 8486): -145532656->282225160; path2 (length 18947): -145532656->-430728152->-331863421->282225160
+Run edlib for path1 (length 6580): -941819580->4188308->-717151226->-436025003; path2 (length 16548): -941819580->-857744901->247956369->701842130->-436025003
+Run edlib for path1 (length 717): -941819580->4188308; path2 (length 11239): -941819580->-857744901->247956369->701842130->4188308
+Run edlib for path1 (length 35588): -364486310->487973603; path2 (length 9035): -364486310->-824710541->-493240516->450220836->487973603
+Run edlib for path1 (length 5119): -364486310->-824710541; path2 (length 4689): -364486310->34727045->427856248->-824710541; identity 0.635975
+Run edlib for path1 (length 5119): 824710541->364486310; path2 (length 4689): 824710541->-427856248->-34727045->364486310; identity 0.636348
+Run edlib for path1 (length 3646): -165670615->-904103709->33186328; path2 (length 3628): -165670615->567593260->-250785005->33186328; identity 0.635789
+Run edlib for path1 (length 7589): -165670615->567593260->254518121->-479804555; path2 (length 7759): -165670615->-904103709->33186328->674879729->-479804555; identity 0.600358
+Run edlib for path1 (length 7588): -165670615->567593260->-250785005->254518121->-479804555; path2 (length 7759): -165670615->-904103709->33186328->674879729->-479804555; identity 0.601296
+Run edlib for path1 (length 3510): -254518121->-567593260; path2 (length 3509): -254518121->250785005->-567593260; identity 0.634011
+Run edlib for path1 (length 7005): 985739290->133516968->978206283; path2 (length 6813): 985739290->-811688893->978206283; identity 0.597799
+Run edlib for path1 (length 6812): 985739290->-811688893; path2 (length 6974): 985739290->133516968->-811688893; identity 0.597203
+Run edlib for path1 (length 35588): -487973603->364486310; path2 (length 9035): -487973603->-450220836->493240516->824710541->364486310
+Run edlib for path1 (length 717): -4188308->941819580; path2 (length 11239): -4188308->-701842130->-247956369->857744901->941819580
+Run edlib for path1 (length 3511): -72963145->230295172->-948987951; path2 (length 9539): -72963145->457702391->563842146->229084971->-948987951
+Run edlib for path1 (length 18805): -72963145->230295172->-948987951->-800428839->-114320362; path2 (length 10882): -72963145->457702391->563842146->-216097173->-114320362
+Run edlib for path1 (length 6580): 436025003->717151226->-4188308->941819580; path2 (length 16548): 436025003->-701842130->-247956369->857744901->941819580
+Run edlib for path1 (length 8486): -282225160->145532656; path2 (length 18947): -282225160->331863421->430728152->145532656
+Run edlib for path1 (length 7585): 567593260->254518121->-479804555; path2 (length 7737): 567593260->-250785005->33186328->674879729->-479804555; identity 0.604703
+Run edlib for path1 (length 3510): 567593260->254518121; path2 (length 3509): 567593260->-250785005->254518121; identity 0.635191
+Run edlib for path1 (length 236): 229084971->-667650584->-650629588; path2 (length 17541): 229084971->-948987951->-800428839->-114320362->-650629588
+Run edlib for path1 (length 19998): 895897115->491415588; path2 (length 23651): 895897115->841601520->76779636->491415588; identity 0.546678
+Run edlib for path1 (length 4331): 133516968->978206283; path2 (length 4301): 133516968->-811688893->978206283; identity 0.61621
+Run edlib for path1 (length 6141): 578782936->-259639920; path2 (length 10931): 578782936->-872906364->259420435->-259639920
+Run edlib for path1 (length 7173): 114320362->216097173->-563842146; path2 (length 21124): 114320362->800428839->948987951->-229084971->-563842146
+Run edlib for path1 (length 18805): 114320362->800428839->948987951->-230295172->72963145; path2 (length 10882): 114320362->216097173->-563842146->-457702391->72963145
+Run edlib for path1 (length 7555): 450220836->-512664448; path2 (length 13692): 450220836->487973603->124854333->-512664448
+Run edlib for path1 (length 7518): 11936837->427856248; path2 (length 2369): 11936837->34727045->427856248
+Run edlib for path1 (length 14208): 76779636->-710304188; path2 (length 10729): 76779636->491415588->-710304188; identity 0.574393
+Run edlib for path1 (length 7589): 479804555->-254518121->-567593260->165670615; path2 (length 7759): 479804555->-674879729->-33186328->904103709->165670615; identity 0.601961
+Run edlib for path1 (length 7588): 479804555->-254518121->250785005->-567593260->165670615; path2 (length 7759): 479804555->-674879729->-33186328->904103709->165670615; identity 0.602671
+Run edlib for path1 (length 7583): 479804555->-254518121->250785005; path2 (length 7736): 479804555->-674879729->-33186328->250785005; identity 0.604729
+Run edlib for path1 (length 7585): 479804555->-254518121->-567593260; path2 (length 7737): 479804555->-674879729->-33186328->250785005->-567593260; identity 0.605895
+Run edlib for path1 (length 8224): 974286428->-681167054; path2 (length 11413): 974286428->-954249719->-783547487->-681167054; identity 0.55687
+Run edlib for path1 (length 7173): 563842146->-216097173->-114320362; path2 (length 21124): 563842146->229084971->-948987951->-800428839->-114320362
+Run edlib for path1 (length 7831): 563842146->-216097173->-114320362->-650629588; path2 (length 4477): 563842146->229084971->-667650584->-650629588
+Run edlib for path1 (length 8224): 681167054->-974286428; path2 (length 11413): 681167054->783547487->954249719->-974286428; identity 0.55654
+Run edlib for path1 (length 11056): 297151211->988272320->434707165; path2 (length 9045): 297151211->521246797->434707165; identity 0.562683
+Graph size after remove bulges with two multi-edge paths: 330, removed_paths: 0
+Graph size after whirl removal: 330 removed_whirls: 0
+Round 1 finished
+Removed whirls: 0
+Removed complex bulges: 0
+
+Write graph test_output/consensus.k401/graph.final.dot, fasta test_output/consensus.k401/graph.final.fasta
+Total number of nodes: 330
+Total number of edges (non-short edges): 490 (414)
+Bicolored edges: 248
+Length of bicolored edges: 1559780
+Red edges: 100
+Length of red edges: 399980
+Multi 1 (non-short edges): 194 (184)
+Length: 1234380
+Multi 2 (non-short edges): 162 (132)
+Length: 1369870
+Multi 3 (non-short edges): 66 (40)
+Length: 135818
+Multi >3 (non-short edges): 68 (58)
+Length: 153420
+Genome 1 edges: 238
+Genome 1 length: 1113466
+Genome 2 edges: 291
+Genome 2 length: 1475149
+Imbalanced edges (non-short edges): 336 (280)
+Length: 1527340

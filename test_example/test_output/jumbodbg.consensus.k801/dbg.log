@@ -1,0 +1,148 @@
+jumboDBG --reads test_output/consensus.k401/graph.final.haplome1.fa --reads test_output/consensus.k401/graph.final.haplome2.fa -t 25 -k 801 -o test_output/jumbodbg.consensus.k801 --coverage 
+00:00:00 51Mb  INFO: Hello! You are running jumboDBG, a tool for construction of de Bruijn graphs for arbitrarily large values of k
+00:00:00 51Mb  INFO: Note that jumboDBG does not perform any error correction and ignores all reads shorter than k + w = 2801
+00:00:00 0Mb  INFO: Reading reads
+00:00:00 0Mb  INFO: Extracting minimizers
+00:00:00 7Mb  TRACE: Starting parallel calculation using 25 threads
+00:00:00 11Mb  TRACE: 56 items of total length 3193631 processed 
+00:00:00 11Mb  TRACE: Finished parallel processing. Processed 56 items with total length 3193631
+00:00:00 11Mb  INFO: Finished read processing
+00:00:00 11Mb  INFO: 2906 hashs collected. Starting sorting.
+00:00:00 11Mb  INFO: Finished sorting. Total distinct minimizers: 1510
+00:00:00 11Mb  INFO: Starting construction of sparse de Bruijn graph
+00:00:00 11Mb  INFO: Vertex map constructed.
+00:00:00 14Mb  INFO: Filling edge sequences.
+00:00:00 14Mb  TRACE: Starting to fill edges
+00:00:00 14Mb  TRACE: Starting parallel calculation using 25 threads
+00:00:00 17Mb  TRACE: 56 items of total length 3193631 processed 
+00:00:00 17Mb  TRACE: Finished parallel processing. Processed 56 items with total length 3193631
+00:00:00 17Mb  TRACE: Sparse graph edges filled.
+00:00:00 17Mb  INFO: Finished sparse de Bruijn graph construction.
+00:00:00 17Mb  TRACE: Checking vertex sequences
+00:00:00 17Mb  TRACE: Starting parallel calculation
+00:00:00 17Mb  TRACE: Processed 1510 items
+00:00:00 17Mb  TRACE: Finished parallel processing. Processed 1510 items 
+00:00:00 17Mb  TRACE: Vertex sequence check success
+00:00:00 17Mb  INFO: Collecting tips 
+00:00:00 17Mb  TRACE: Starting parallel calculation
+00:00:00 17Mb  TRACE: Processed 1510 items
+00:00:00 17Mb  TRACE: Finished parallel processing. Processed 1510 items 
+00:00:00 17Mb  INFO: Added 4 artificial minimizers from tips.
+00:00:00 17Mb  INFO: Collected 3132 old edges.
+00:00:00 17Mb  INFO: New minimizers added to sparse graph.
+00:00:00 17Mb  INFO: Refilling graph with old edges.
+00:00:00 17Mb  TRACE: Starting to fill edges
+00:00:00 17Mb  TRACE: Starting parallel calculation
+00:00:00 17Mb  TRACE: Processed 3132 items
+00:00:00 17Mb  TRACE: Finished parallel processing. Processed 3132 items 
+00:00:00 17Mb  TRACE: Sparse graph edges filled.
+00:00:00 17Mb  INFO: Filling graph with new edges.
+00:00:00 17Mb  TRACE: Starting to fill edges
+00:00:00 17Mb  TRACE: Starting parallel calculation using 25 threads
+00:00:00 17Mb  TRACE: 4 items of total length 5608 processed 
+00:00:00 17Mb  TRACE: Finished parallel processing. Processed 4 items with total length 5608
+00:00:00 17Mb  TRACE: Sparse graph edges filled.
+00:00:00 17Mb  INFO: Finished fixing sparse de Bruijn graph.
+00:00:00 17Mb  TRACE: Checking vertex sequences
+00:00:00 17Mb  TRACE: Starting parallel calculation
+00:00:00 17Mb  TRACE: Processed 1514 items
+00:00:00 17Mb  TRACE: Finished parallel processing. Processed 1514 items 
+00:00:00 17Mb  TRACE: Vertex sequence check success
+00:00:00 17Mb  TRACE: Graph statistics:
+Total edges: 1570
+Total vertices: 1514
+Number of end vertices: 4
+Number of unbranching vertices: 1415
+Number of connected components: 1
+Number of isolated edges 0 0
+Distribution of in/out degrees:
+\ 0 1 2 3 4 
+0 0 4 0 0 0 
+1 4 2830 77 7 1 
+2 0 77 16 2 0 
+3 0 7 2 0 0 
+4 0 1 0 0 0 
+00:00:00 17Mb  INFO: Starting to extract disjointigs.
+00:00:00 17Mb  TRACE: Extracting linear disjointigs.
+00:00:00 17Mb  TRACE: Starting parallel calculation
+00:00:00 17Mb  TRACE: Processed 1514 items
+00:00:00 17Mb  TRACE: Finished parallel processing. Processed 1514 items 
+00:00:00 17Mb  TRACE: Starting parallel calculation
+00:00:00 18Mb  TRACE: Processed 1514 items
+00:00:00 18Mb  TRACE: Finished parallel processing. Processed 1514 items 
+00:00:00 18Mb  TRACE: Finished extracting linear disjointigs.
+00:00:00 18Mb  TRACE: Extracting circular disjointigs.
+00:00:00 18Mb  TRACE: Starting parallel calculation
+00:00:00 18Mb  TRACE: Processed 1514 items
+00:00:00 18Mb  TRACE: Finished parallel processing. Processed 1514 items 
+00:00:00 18Mb  TRACE: Finished extracting circular disjointigs.
+00:00:00 18Mb  INFO: Finished extracting 162 disjointigs of total size 1604900
+00:00:00 51Mb  INFO: Loading disjointigs from file "test_output/jumbodbg.consensus.k801/disjointigs.fasta"
+00:00:00 51Mb  INFO: Filling bloom filter with k+1-mers.
+00:00:00 51Mb  TRACE: Starting parallel calculation using 25 threads
+00:00:00 51Mb  TRACE: 207 items of total length 1640945 processed 
+00:00:00 51Mb  TRACE: Finished parallel processing. Processed 207 items with total length 1640945
+00:00:00 51Mb  INFO: Filled 6804511 bits out of 47204416
+00:00:00 51Mb  INFO: Finished filling bloom filter. Selecting junctions.
+00:00:00 51Mb  TRACE: Starting parallel calculation using 25 threads
+00:00:01 51Mb  TRACE: 207 items of total length 1640945 processed 
+00:00:01 51Mb  TRACE: Finished parallel processing. Processed 207 items with total length 1640945
+00:00:01 51Mb  INFO: Collected 751 junctions.
+00:00:01 51Mb  INFO: Starting DBG construction.
+00:00:01 51Mb  INFO: Vertices created.
+00:00:01 51Mb  TRACE: Starting parallel calculation using 25 threads
+00:00:01 51Mb  TRACE: 162 items of total length 1604900 processed 
+00:00:01 51Mb  TRACE: Finished parallel processing. Processed 162 items with total length 1604900
+00:00:01 51Mb  INFO: Filled dbg edges. Adding hanging vertices 
+00:00:01 51Mb  TRACE: Starting parallel calculation
+00:00:01 51Mb  TRACE: Processed 751 items
+00:00:01 51Mb  TRACE: Finished parallel processing. Processed 751 items 
+00:00:01 51Mb  INFO: Added 0 hanging vertices
+00:00:01 51Mb  INFO: Merging unbranching paths
+00:00:01 51Mb  TRACE: Merging unbranching paths
+00:00:01 51Mb  TRACE: Merging linear unbranching paths
+00:00:01 51Mb  TRACE: Starting parallel calculation
+00:00:01 51Mb  TRACE: Processed 751 items
+00:00:01 51Mb  TRACE: Finished parallel processing. Processed 751 items 
+00:00:01 51Mb  TRACE: Finished merging linear unbranching paths
+00:00:01 51Mb  TRACE: Merging cyclic paths
+00:00:01 51Mb  TRACE: Starting parallel calculation
+00:00:01 51Mb  TRACE: Processed 751 items
+00:00:01 51Mb  TRACE: Finished parallel processing. Processed 751 items 
+00:00:01 51Mb  TRACE: Found 0 perfect loops
+00:00:01 51Mb  TRACE: Finished merging cyclic paths
+00:00:01 51Mb  TRACE: Removing isolated vertices
+00:00:01 51Mb  TRACE: Finished removing isolated vertices
+00:00:01 51Mb  TRACE: Finished merging unbranching paths
+00:00:01 51Mb  INFO: Ended merging edges. Resulting size 145
+00:00:01 51Mb  TRACE: Statistics for de Bruijn graph:
+00:00:01 51Mb  TRACE: Graph statistics:
+Total edges: 214
+Total vertices: 145
+Number of end vertices: 4
+Number of unbranching vertices: 0
+Number of connected components: 1
+Number of isolated edges 0 0
+Distribution of in/out degrees:
+\ 0 1 2 3 4 
+0 0 4 0 0 0 
+1 4 0 140 1 0 
+2 0 140 0 0 0 
+3 0 1 0 0 0 
+4 0 0 0 0 0 
+00:00:01 51Mb  TRACE: Adding anchors from long edges for alignment
+00:00:01 51Mb  TRACE: Starting parallel calculation
+00:00:01 51Mb  TRACE: Processed 428 items
+00:00:01 51Mb  TRACE: Finished parallel processing. Processed 428 items 
+00:00:01 51Mb  TRACE: Added 1282 anchors
+00:00:01 51Mb  INFO: Calculating edge coverage.
+00:00:01 51Mb  INFO: Starting to fill edge coverages
+00:00:01 51Mb  TRACE: Starting parallel calculation using 25 threads
+00:00:01 51Mb  TRACE: 2 items of total length 2588615 processed 
+00:00:01 51Mb  TRACE: Finished parallel processing. Processed 2 items with total length 2588615
+00:00:01 51Mb  INFO: Edge coverage calculated.
+00:00:01 51Mb  INFO: Printing graph to fasta file "test_output/jumbodbg.consensus.k801/graph.fasta"
+00:00:01 51Mb  INFO: Printing graph to gfa file "test_output/jumbodbg.consensus.k801/graph.gfa"
+00:00:01 51Mb  INFO: Printing graph to dot file "test_output/jumbodbg.consensus.k801/graph.dot"
+00:00:01 51Mb  INFO: DBG construction finished
+00:00:01 51Mb  INFO: Please cite our paper if you use jumboDBG in your research: https://www.biorxiv.org/content/10.1101/2020.12.10.420448
