@@ -30,14 +30,14 @@
 
    Install the required dependencies to ensure proper functionality:
    - [**gcc**](https://gcc.gnu.org/): tested on v11.4.0
-   - [**GNU Make**](https://www.gnu.org/software/make/): test on v4.3
+   - [**GNU Make**](https://www.gnu.org/software/make/): tested on v4.3
    - [**RepeatMasker**](https://www.repeatmasker.org/): v4.1.5 (For masking interspersed repeats)
    - [**Cigar**](https://pypi.org/project/cigar/): v0.1.3 (For processing Cigar strings)
    - [**Pandas**](https://pandas.pydata.org/): v2.2.2 (For processing tables)
    - [**BioPython**](https://biopython.org/): v1.81 (For processing sequence files)
    - [**psutil**](https://pypi.org/project/psutil/): v5.9.0 (For support of monitoring memory)
 
-   These dependencies (except for gcc and GNU make) can be installed using Conda, which will create a new environment named `genomedecoder` (if you already installed these dependencies, skip this step):
+   These dependencies can be installed using Conda, which will create a new environment named `genomedecoder` (if you already installed these dependencies, skip this step):
 
    ```bash
    cd GenomeDecoder
@@ -55,7 +55,7 @@
 ## Usage
 
 ### Sequence preparation:
-GenomeDecoder is a tool developed for complete genomes, so each input genome should be in FASTA format, and should contain only one contig for each file. We highly recommend running RepeatMasker before input the genome files to GenomeDecoder. RepeatMasker will mask common repeats in the genome files using "N"s.
+GenomeDecoder is a tool developed for complete genomes, so each input genome should be in FASTA format, and should contain only one contig for each file. We highly recommend running RepeatMasker before inputting the genome files to GenomeDecoder. RepeatMasker will mask interspersed repeats in the genome files using "N"s.
 
 To run RepeatMasker, the species name is required (if not specified, RepeatMasker will treat the sequence as human by default):
 
