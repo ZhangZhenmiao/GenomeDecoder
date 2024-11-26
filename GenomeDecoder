@@ -41,7 +41,7 @@ monitoring_thread = threading.Thread(target=monitor_memory_usage, args=(1,), dae
 monitoring_thread.start()
 
 def logging(message):
-    print(f"[{datetime.datetime.now()}] {message}", flush=True)
+    print(f"[{datetime.datetime.now():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
 
 def run_cmd(command, name, verbose=True):
     if verbose:
@@ -97,10 +97,13 @@ def adjust_coordinates(blocks):
     df = df.loc[df["Length in Original Sequence"] >= 2000]
     df.to_csv(blocks, index=None, sep='\t')
 
-def get_coordinates(edlib, genome_ori, genome, blocks, output):
-    run_cmd([f"{dirname}/src/edlib_align", genome_ori, genome, edlib], f"Aligning transformed sequence {genome} to original sequence {genome_ori}")
-    run_cmd([f"{dirname}/src/parse_cigar.py", f"{edlib}/cigar.txt", blocks, "edlib"], f"Finalizing genome {genome_ori}")
-    run_cmd(["mv", f"{blocks}.edlib.csv", output], f"Copying result {output}")
+def get_coordinates(align_out, genome_ori, genome, blocks, output):
+    if aligner == "edlib":
+        run_cmd([f"{dirname}/src/edlib_align", genome_ori, genome, align_out], f"Aligning transformed sequence {genome} to original sequence {genome_ori}")
+    else:
+        run_cmd([f"{dirname}/src/unialigner/tandem_aligner/build/bin/tandem_aligner", "--first", genome_ori, "--second", genome, "-o", align_out], f"Aligning transformed sequence {genome} to original sequence {genome_ori}")
+    run_cmd([f"{dirname}/src/parse_cigar.py", f"{align_out}/cigar.txt", blocks, aligner], f"Finalizing genome {genome_ori}")
+    run_cmd(["mv", f"{blocks}.{aligner}.csv", output], f"Copying result {output}")
     adjust_coordinates(output)
 
 parser = argparse.ArgumentParser()
@@ -143,6 +146,14 @@ parser.add_argument(
     help="Sets the similarity threshold for collapsing complex bubbles. The default value is 0.65, which is suitable for most datasets."
 )
 parser.add_argument(
+    "-a",
+    "--aligner",
+    required=False,
+    default="unialigner",
+    type=str,
+    help="The alignment tool for global alignment between disembroiled genome and original genome. UniAligner is defalut. Choose from UniAligner and Edlib."
+)
+parser.add_argument(
     "-o",
     "--output",
     required=True,
@@ -151,9 +162,9 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-if (os.path.isdir(args.output)):
-    logging(f"Output directory {args.output} already exists.")
-    exit(1)
+# if (os.path.isdir(args.output)):
+#     logging(f"Output directory {args.output} already exists.")
+#     exit(1)
 
 k_values = args.k_values.split(',')
 if len(k_values) < 2:
@@ -164,12 +175,15 @@ if int(k_values[0]) < 20:
     logging(f"We recommend the smallest k to be 21.")
     exit(1)
 
+aligner = args.aligner.lower()
+
 pid = os.getpid()
 process = psutil.Process(pid)
 logging("GenomeDecoder starts")
 logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 # create output directory
-run_cmd(["mkdir", args.output], "Making output dir")
+if not os.path.isdir(args.output):
+    run_cmd(["mkdir", args.output], "Making output dir")
 
 # get py dir
 dirname, filename = os.path.split(os.path.abspath(__file__))
@@ -183,39 +197,46 @@ for i, g in enumerate(genomes):
 if len(genomes_to_run) == 1:
     genome1_ori = os.path.realpath(genomes_to_run[0])
     genome1 = os.path.realpath(genomes_to_run[0])
-    k = k_values[0]
-    out_dir_graph = f"{args.output}/jumbodbg.consensus.k{k}"
-    dot_graph = f"{out_dir_graph}/graph.dot"
-    fa_graph = f"{out_dir_graph}/graph.fasta"
-    out_dir_consensus = f"{args.output}/consensus.k{k}"
-    run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-    run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
-    genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
 
-    for k in k_values[1:]:
+    out = f"{k_values[-1]}.1"
+    out_dir_consensus = f"{args.output}/consensus.k{out}"
+    genome1_transformed = f"{out_dir_consensus}/graph.with_haplome.haplome1.fa"
+
+    if not os.path.isfile(genome1_transformed):
+        k = k_values[0]
         out_dir_graph = f"{args.output}/jumbodbg.consensus.k{k}"
         dot_graph = f"{out_dir_graph}/graph.dot"
         fa_graph = f"{out_dir_graph}/graph.fasta"
         out_dir_consensus = f"{args.output}/consensus.k{k}"
         run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-        run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+        run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
         genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
 
-    out = f"{k}.1"
-    out_dir_graph = f"{args.output}/jumbodbg.consensus.k{out}"
-    dot_graph = f"{out_dir_graph}/graph.dot"
-    fa_graph = f"{out_dir_graph}/graph.fasta"
-    out_dir_consensus = f"{args.output}/consensus.k{out}"
-    run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-    run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
-    genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
-    logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
+        for k in k_values[1:]:
+            out_dir_graph = f"{args.output}/jumbodbg.consensus.k{k}"
+            dot_graph = f"{out_dir_graph}/graph.dot"
+            fa_graph = f"{out_dir_graph}/graph.fasta"
+            out_dir_consensus = f"{args.output}/consensus.k{k}"
+            run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+            run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+            genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
 
-    edlib_1 = f"{out_dir_consensus}.edlib1"
-    run_cmd([f"{dirname}/src/edlib_align", genome1_ori, genome1, edlib_1], f"Aligning transformed sequence {genome1} to original sequence {genome1_ori}")
-    run_cmd([f"{dirname}/src/parse_cigar.py", f"{edlib_1}/cigar.txt", f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks", "edlib"], "Finalizing genome 1")
-    run_cmd(["mv", f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks.edlib.csv", f"{args.output}/final_blocks_1.csv"], "Copying result 1")
-    adjust_coordinates(f"{args.output}/final_blocks_1.csv")
+        out = f"{k}.1"
+        out_dir_graph = f"{args.output}/jumbodbg.consensus.k{out}"
+        dot_graph = f"{out_dir_graph}/graph.dot"
+        fa_graph = f"{out_dir_graph}/graph.fasta"
+        out_dir_consensus = f"{args.output}/consensus.k{out}"
+        run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+        run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+        # genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
+        logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
+    else:
+        genome1 = genome1_transformed
+        logging("Restart from global alignment")
+
+    align_1 = f"{out_dir_consensus}.{aligner}1"
+    blocks_1 = f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks"
+    get_coordinates(align_1, genome1_ori, genome1, blocks_1, f"{args.output}/final_blocks_1.csv")
     logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
 
 elif len(genomes_to_run) == 2:
@@ -224,47 +245,57 @@ elif len(genomes_to_run) == 2:
     genome1 = os.path.realpath(genomes_to_run[0])
     genome2 = os.path.realpath(genomes_to_run[1])
 
-    k = k_values[0]
-    out_dir_graph = f"{args.output}/jumbodbg.consensus.k{k}"
-    dot_graph = f"{out_dir_graph}/graph.dot"
-    fa_graph = f"{out_dir_graph}/graph.fasta"
-    out_dir_consensus = f"{args.output}/consensus.k{k}"
-    run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-    run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
-    genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
-    genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
+    out = f"{k_values[-1]}.1"
+    out_dir_consensus = f"{args.output}/consensus.k{out}"
+    genome1_transformed = f"{out_dir_consensus}/graph.with_haplome.haplome1.fa"
+    genome2_transformed = f"{out_dir_consensus}/graph.with_haplome.haplome2.fa"
 
-    for k in k_values[1:]:
+    if not os.path.isfile(genome1_transformed) or not os.path.isfile(genome2_transformed):
+        k = k_values[0]
         out_dir_graph = f"{args.output}/jumbodbg.consensus.k{k}"
         dot_graph = f"{out_dir_graph}/graph.dot"
         fa_graph = f"{out_dir_graph}/graph.fasta"
         out_dir_consensus = f"{args.output}/consensus.k{k}"
         run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-        run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+        run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
         genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
         genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
 
-    out = f"{k}.1"
-    out_dir_graph = f"{args.output}/jumbodbg.consensus.k{out}"
-    dot_graph = f"{out_dir_graph}/graph.dot"
-    fa_graph = f"{out_dir_graph}/graph.fasta"
-    out_dir_consensus = f"{args.output}/consensus.k{out}"
-    run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
-    run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
-    # genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
-    # genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
-    logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
+        for k in k_values[1:]:
+            out_dir_graph = f"{args.output}/jumbodbg.consensus.k{k}"
+            dot_graph = f"{out_dir_graph}/graph.dot"
+            fa_graph = f"{out_dir_graph}/graph.fasta"
+            out_dir_consensus = f"{args.output}/consensus.k{k}"
+            run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+            run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+            genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
+            genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
 
-    edlib_1 = f"{out_dir_consensus}.edlib1"
+        out = f"{k}.1"
+        out_dir_graph = f"{args.output}/jumbodbg.consensus.k{out}"
+        dot_graph = f"{out_dir_graph}/graph.dot"
+        fa_graph = f"{out_dir_graph}/graph.fasta"
+        out_dir_consensus = f"{args.output}/consensus.k{out}"
+        run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+        run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
+        # genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
+        # genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
+        logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
+    else:
+        genome1 = genome1_transformed
+        genome2 = genome2_transformed
+        logging("Restart from global alignment")
+
+    align_1 = f"{out_dir_consensus}.{aligner}1"
     blocks_1 = f"{out_dir_consensus}/graph.with_haplome.haplome1.blocks"
     output_1 = f"{args.output}/final_blocks_1.csv"
-    align_thread_1 = threading.Thread(target=get_coordinates, args=(edlib_1, genome1_ori, genome1, blocks_1, output_1,))
+    align_thread_1 = threading.Thread(target=get_coordinates, args=(align_1, genome1_ori, genome1, blocks_1, output_1,))
     align_thread_1.start()
     
-    edlib_2 = f"{out_dir_consensus}.edlib2"
+    align_2 = f"{out_dir_consensus}.{aligner}2"
     blocks_2 = f"{out_dir_consensus}/graph.with_haplome.haplome2.blocks"
     output_2 = f"{args.output}/final_blocks_2.csv"
-    align_thread_2 = threading.Thread(target=get_coordinates, args=(edlib_2, genome2_ori, genome2, blocks_2, output_2,))
+    align_thread_2 = threading.Thread(target=get_coordinates, args=(align_2, genome2_ori, genome2, blocks_2, output_2,))
     align_thread_2.start()
 
     align_thread_1.join()
@@ -328,10 +359,10 @@ else:
 
     threads = []
     for i in range(len(genomes_to_run)):
-        edlib = f"{out_dir_consensus}.edlib{i+1}"
+        align = f"{out_dir_consensus}.{aligner}{i+1}"
         blocks = f"{out_dir_consensus}/graph.with_haplome.haplome{i+1}.blocks"
         output = f"{args.output}/final_blocks_{i+1}.csv"
-        align_thread = threading.Thread(target=get_coordinates, args=(edlib, genomes_ori[i],  genomes_to_run[i], blocks, output,))
+        align_thread = threading.Thread(target=get_coordinates, args=(align, genomes_ori[i],  genomes_to_run[i], blocks, output,))
         align_thread.start()
         threads.append(align_thread)
     for t in threads:

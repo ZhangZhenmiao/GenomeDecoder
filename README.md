@@ -87,6 +87,9 @@ GenomeDecoder [-h] -g GENOME [-i ITERATIONS] [-k K_VALUES] [-s SIMPLE] [-c COMPL
 - **-c COMPLEX, --complex COMPLEX**  
   Sets the similarity threshold for collapsing complex bubbles. The default value is `0.65`, which is suitable for most datasets.
 
+- **-a ALIGNER, --aligner ALIGNER**
+  The alignment tool for global alignment between disembroiled genome and original genome. `UniAligner` is defalut. Choose from `UniAligner` and `Edlib`.
+
 - **-o OUTPUT, --output OUTPUT**  
   Specifies the output directory where GenomeDecoder will save the results. This argument is required.
 
