@@ -191,8 +191,8 @@ dirname, filename = os.path.split(os.path.abspath(__file__))
 genomes = args.genome
 genomes_to_run = []
 for i, g in enumerate(genomes):
-    add_random_prefix_suffix(g, f"{args.output}/original_genome_{i+1}.pre_suff.fa")
-    genomes_to_run.append(f"{args.output}/original_genome_{i+1}.pre_suff.fa")
+    add_random_prefix_suffix(g, f"{args.output}/original_genome_{i+1}.fa")
+    genomes_to_run.append(f"{args.output}/original_genome_{i+1}.fa")
 
 if len(genomes_to_run) == 1:
     genome1_ori = os.path.realpath(genomes_to_run[0])
