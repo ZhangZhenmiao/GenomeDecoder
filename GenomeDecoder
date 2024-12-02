@@ -149,9 +149,9 @@ parser.add_argument(
     "-a",
     "--aligner",
     required=False,
-    default="unialigner",
+    default="edlib",
     type=str,
-    help="The alignment tool for global alignment between disembroiled genome and original genome. UniAligner is defalut. Choose from UniAligner and Edlib."
+    help="The alignment tool for global alignment between disembroiled genome and original genome. Edlib is defalut. Choose from Edlib and UniAligner. UniAligner is 10x faster but less stable for tandem repeats (optional)"
 )
 parser.add_argument(
     "-o",
