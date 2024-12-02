@@ -112,7 +112,7 @@ parser.add_argument(
     "--genome",
     required=True,
     action="append",
-    help="Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker. Use -g multiple times to compare multiple genomes."
+    help="Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker (in the case of a multi-chromosomal genome, all chromosomes should be concatenated in a single string using \"N\" as a separator). Use -g multiple times to compare multiple genomes."
 )
 parser.add_argument(
     "-i",
@@ -157,7 +157,7 @@ parser.add_argument(
     "-o",
     "--output",
     required=True,
-    help="pecifies the output directory where GenomeDecoder will save the results. This argument is required."
+    help="Specifies the output directory where GenomeDecoder will save the results. This argument is required."
 )
 
 args = parser.parse_args()

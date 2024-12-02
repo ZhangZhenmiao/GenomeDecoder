@@ -73,7 +73,7 @@ GenomeDecoder [-h] -g GENOME [-i ITERATIONS] [-k K_VALUES] [-s SIMPLE] [-c COMPL
   Displays the help message and exits.
 
 - **-g GENOME, --genome GENOME**  
-  Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker. Use `-g` multiple times to compare multiple genomes.
+  Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker (in the case of a multi-chromosomal genome, all chromosomes should be concatenated in a single string using "N" as a separator). Use `-g` multiple times to compare multiple genomes.
 
 - **-i ITERATIONS, --iterations ITERATIONS**  
   Specifies the number of iterations to use, applicable for disembroiling more than two input genomes. The default value is 5.
