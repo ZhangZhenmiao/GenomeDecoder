@@ -1,4 +1,4 @@
-default: consensus_asm synteny edlib_align tandem_aligner
+default: consensus_asm synteny edlib_align
 
 consensus_asm: consensus_asm.cpp dot_graph.o graph_simplification.o
 	g++ -g -o consensus_asm consensus_asm.cpp dot_graph.o graph_simplification.o -lpthread -fopenmp -fconcepts edlib/src/edlib.cpp -I edlib/include
@@ -18,14 +18,14 @@ synteny_graph.o: synteny_graph.cpp synteny_graph.hpp
 edlib_align: edlib.cpp 
 	g++ -g -o edlib_align edlib.cpp edlib/src/edlib.cpp -I edlib/include
 
-cmake:
-	mkdir -p unialigner/tandem_aligner/build
-	cd unialigner/tandem_aligner/build && cmake .. -DCMAKE_BUILD_TYPE="Release"
+# cmake:
+# 	mkdir -p unialigner/tandem_aligner/build
+# 	cd unialigner/tandem_aligner/build && cmake .. -DCMAKE_BUILD_TYPE="Release"
 
-tandem_aligner: cmake
-	$(MAKE) -C unialigner/tandem_aligner/build all
-	mkdir -p unialigner/tandem_aligner/build/bin
-	mv $(abspath unialigner/tandem_aligner/build/src/projects/tandem_aligner/tandem_aligner) unialigner/tandem_aligner/build/bin/tandem_aligner
+# tandem_aligner: cmake
+# 	$(MAKE) -C unialigner/tandem_aligner/build all
+# 	mkdir -p unialigner/tandem_aligner/build/bin
+# 	mv $(abspath unialigner/tandem_aligner/build/src/projects/tandem_aligner/tandem_aligner) unialigner/tandem_aligner/build/bin/tandem_aligner
 
 clean:
 	rm -rf consensus_asm edlib_align dot_graph.o graph_simplification.o synteny synteny_graph.o edlib.o unialigner/tandem_aligner/build unialigner/tandem_aligner/test_dataset/test_launch

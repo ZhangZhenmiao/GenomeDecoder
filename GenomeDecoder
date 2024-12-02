@@ -145,14 +145,14 @@ parser.add_argument(
     type=str,
     help="Sets the similarity threshold for collapsing complex bubbles. The default value is 0.65, which is suitable for most datasets."
 )
-parser.add_argument(
-    "-a",
-    "--aligner",
-    required=False,
-    default="edlib",
-    type=str,
-    help="The alignment tool for global alignment between disembroiled genome and original genome. Edlib is defalut. Choose from Edlib and UniAligner. UniAligner is 10x faster but less stable for tandem repeats (optional)"
-)
+# parser.add_argument(
+#     "-a",
+#     "--aligner",
+#     required=False,
+#     default="edlib",
+#     type=str,
+#     help="The alignment tool for global alignment between disembroiled genome and original genome. Edlib is defalut and recommended. Choose from Edlib and UniAligner. UniAligner is 10x faster but less stable for tandem repeats (optional)"
+# )
 parser.add_argument(
     "-o",
     "--output",
@@ -175,7 +175,7 @@ if int(k_values[0]) < 20:
     logging(f"We recommend the smallest k to be 21.")
     exit(1)
 
-aligner = args.aligner.lower()
+aligner = "edlib"
 
 pid = os.getpid()
 process = psutil.Process(pid)
