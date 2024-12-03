@@ -85,7 +85,7 @@ def add_random_prefix_suffix(input_file, output_file, prefix_length=2000, suffix
             if seq_combined == "":
                 seq_combined += seq_trans
             else:
-                seq_combined += ("N"*2000 + seq_trans)
+                seq_combined += (random_sequence(2000) + seq_trans)
         new_seq = Seq(prefix + seq_combined + suffix)
         new_record = SeqRecord(new_seq, id=record.id, description=record.description)
         SeqIO.write(new_record, outfile, "fasta")
