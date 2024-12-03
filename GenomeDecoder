@@ -70,9 +70,10 @@ def add_random_prefix_suffix(input_file, output_file, prefix_length=2000, suffix
         return ''.join(random.choices(bases, k=length))
     
     with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
+        seq_combined = ""
+        prefix = random_sequence(prefix_length)
+        suffix = random_sequence(suffix_length)
         for record in SeqIO.parse(infile, "fasta"):
-            prefix = random_sequence(prefix_length)
-            suffix = random_sequence(suffix_length)
             seq = str(record.seq).upper()
             seq_trans = ""
             for l in seq:
@@ -80,9 +81,14 @@ def add_random_prefix_suffix(input_file, output_file, prefix_length=2000, suffix
                     seq_trans += random.choice(['A', 'T', 'C', 'G'])
                 else:
                     seq_trans += l
-            new_seq = Seq(prefix + seq_trans + suffix)
-            new_record = SeqRecord(new_seq, id=record.id, description=record.description)
-            SeqIO.write(new_record, outfile, "fasta")
+
+            if seq_combined == "":
+                seq_combined += seq_trans
+            else:
+                seq_combined += ("N"*2000 + seq_trans)
+        new_seq = Seq(prefix + seq_combined + suffix)
+        new_record = SeqRecord(new_seq, id=record.id, description=record.description)
+        SeqIO.write(new_record, outfile, "fasta")
     
 def adjust_coordinates(blocks):
     df = pd.read_csv(blocks, sep = '\t')
@@ -112,7 +118,7 @@ parser.add_argument(
     "--genome",
     required=True,
     action="append",
-    help="Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker (in the case of a multi-chromosomal genome, all chromosomes should be concatenated in a single string using \"N\"s as a separator). Use -g multiple times to compare multiple genomes."
+    help="Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker (in the case of a multi-chromosomal genome, all contigs are concatenated in a single string using 2000 \"N\"s as separators automatically). Use -g multiple times to compare multiple genomes."
 )
 parser.add_argument(
     "-i",
