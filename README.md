@@ -55,7 +55,7 @@
 ## Usage
 
 ### Sequence preparation:
-GenomeDecoder is a tool developed for complete genomes, so each input genome should be in FASTA format, and should contain only one contig for each file (in the case of a multi-chromosomal genome, all chromosomes should be concatenated in a single string using "N"s as a separator). We highly recommend running RepeatMasker before inputting the genome files to GenomeDecoder. RepeatMasker will mask interspersed repeats in the genome files using "N"s.
+GenomeDecoder is a tool developed for complete genomes. Each input genome should be in FASTA format, and should contain only one contig for each file (in the case of a multi-chromosomal genome, all chromosomes/contigs will be concatenated in a single string using 2000 "N"s as separators automatically by GenomeDecoder). We highly recommend running RepeatMasker before inputting the genome files to GenomeDecoder. RepeatMasker will mask interspersed repeats in the genome files using "N"s.
 
 To run RepeatMasker, the species name is required (if not specified, RepeatMasker will treat the sequence as human by default):
 
@@ -73,7 +73,7 @@ GenomeDecoder [-h] -g GENOME [-i ITERATIONS] [-k K_VALUES] [-s SIMPLE] [-c COMPL
   Displays the help message and exits.
 
 - **-g GENOME, --genome GENOME**  
-  Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker (in the case of a multi-chromosomal genome, all chromosomes are concatenated in a single string using 2000 "N"s as separators automatically). Use `-g` multiple times to compare multiple genomes.
+  Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker (in the case of a multi-chromosomal genome, all chromosomes/contigs are concatenated in a single string using 2000 "N"s as separators automatically). Use `-g` multiple times to compare multiple genomes.
 
 - **-i ITERATIONS, --iterations ITERATIONS**  
   Specifies the number of iterations to use, applicable for disembroiling more than two input genomes. The default value is 5.
