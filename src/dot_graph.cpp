@@ -669,10 +669,11 @@ void Graph::read_from_dot(const std::string& graph_dot, const std::string& graph
         if (line.at(0) == '>') {
             size_t pos1 = line.find_first_of('_');
             size_t pos2 = line.find_first_of('_', pos1 + 1);
-            if (pos2 - pos1 - 1 == 2) {
+            if (pos2 - pos1 - 1 < node_len + 1) {
                 if (line.at(pos2 - 1) == '0')
-                    node1 = "-0";
-                else node1 = "0";
+                    node1 = "-" + line.substr(pos1 + 1, pos2 - pos1 - 2);
+                else node1 = line.substr(pos1 + 1, pos2 - pos1 - 2);
+                std::cout << "Abnormal node size detected for line " << line << ", node1 = " << node1 << std::endl;
             }
             else {
                 node1 = line.substr(pos2 - node_len - 1, node_len);
@@ -683,10 +684,11 @@ void Graph::read_from_dot(const std::string& graph_dot, const std::string& graph
 
             pos1 = pos2;
             pos2 = line.find_first_of('_', pos2 + 1);
-            if (pos2 - pos1 - 1 == 2) {
+            if (pos2 - pos1 - 1 < node_len + 1) {
                 if (line.at(pos2 - 1) == '0')
-                    node2 = "-0";
-                else node2 = "0";
+                    node2 = "-" + line.substr(pos1 + 1, pos2 - pos1 - 2);
+                else node2 = line.substr(pos1 + 1, pos2 - pos1 - 2);
+                std::cout << "Abnormal node size detected for line " << line << ", node2 = " << node2 << std::endl;
             }
             else {
                 node2 = line.substr(pos2 - node_len - 1, node_len);
