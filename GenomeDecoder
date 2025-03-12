@@ -214,7 +214,7 @@ if len(genomes_to_run) == 1:
         dot_graph = f"{out_dir_graph}/graph.dot"
         fa_graph = f"{out_dir_graph}/graph.fasta"
         out_dir_consensus = f"{args.output}/consensus.k{k}"
-        run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+        run_cmd([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
         run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
         genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
 
@@ -223,7 +223,7 @@ if len(genomes_to_run) == 1:
             dot_graph = f"{out_dir_graph}/graph.dot"
             fa_graph = f"{out_dir_graph}/graph.fasta"
             out_dir_consensus = f"{args.output}/consensus.k{k}"
-            run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+            run_cmd([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
             run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
             genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
 
@@ -232,7 +232,7 @@ if len(genomes_to_run) == 1:
         dot_graph = f"{out_dir_graph}/graph.dot"
         fa_graph = f"{out_dir_graph}/graph.fasta"
         out_dir_consensus = f"{args.output}/consensus.k{out}"
-        run_cmd(["jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+        run_cmd([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", genome1, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
         run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
         # genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
         logging(f"RSS (Resident Set Size): {max_memory_usage} bytes")
@@ -262,7 +262,7 @@ elif len(genomes_to_run) == 2:
         dot_graph = f"{out_dir_graph}/graph.dot"
         fa_graph = f"{out_dir_graph}/graph.fasta"
         out_dir_consensus = f"{args.output}/consensus.k{k}"
-        run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+        run_cmd([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
         run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
         genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
         genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
@@ -272,7 +272,7 @@ elif len(genomes_to_run) == 2:
             dot_graph = f"{out_dir_graph}/graph.dot"
             fa_graph = f"{out_dir_graph}/graph.fasta"
             out_dir_consensus = f"{args.output}/consensus.k{k}"
-            run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+            run_cmd([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
             run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
             genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
             genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
@@ -282,7 +282,7 @@ elif len(genomes_to_run) == 2:
         dot_graph = f"{out_dir_graph}/graph.dot"
         fa_graph = f"{out_dir_graph}/graph.fasta"
         out_dir_consensus = f"{args.output}/consensus.k{out}"
-        run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+        run_cmd([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
         run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
         # genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
         # genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
@@ -324,7 +324,7 @@ else:
             dot_graph = f"{out_dir_graph}/graph.dot"
             fa_graph = f"{out_dir_graph}/graph.fasta"
             out_dir_consensus = f"{output}/consensus.k{k}"
-            run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+            run_cmd([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
             run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "--only_simple_bulge", "-s", "0.9"], f"Graph transformation for k={k}")
             genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
             genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
@@ -334,7 +334,7 @@ else:
                 dot_graph = f"{out_dir_graph}/graph.dot"
                 fa_graph = f"{out_dir_graph}/graph.fasta"
                 out_dir_consensus = f"{output}/consensus.k{k}"
-                run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+                run_cmd([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
                 run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
                 genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
                 genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
@@ -344,7 +344,7 @@ else:
             dot_graph = f"{out_dir_graph}/graph.dot"
             fa_graph = f"{out_dir_graph}/graph.fasta"
             out_dir_consensus = f"{output}/consensus.k{out}"
-            run_cmd(["jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
+            run_cmd([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", genome1, "--reads", genome2, "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"], f"Graph construction for k={k}")
             run_cmd([f"{dirname}/src/consensus_asm", "-d", dot_graph, "-f", fa_graph, "-1", genome1, "-2", genome2, "-k", k, "-o", out_dir_consensus, "-s", args.simple, "-c", args.complex], f"Graph transformation for k={k}")
             genome1 = f"{out_dir_consensus}/graph.final.haplome1.fa"
             genome2 = f"{out_dir_consensus}/graph.final.haplome2.fa"
@@ -355,8 +355,8 @@ else:
     
     # jumboDBG
     out_dir_graph = f"{args.output}/jumbodbg_final"
-    print("Run cmd:", " ".join(["jumboDBG", "--reads", " --reads ".join(genomes_to_run), "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"]))
-    os.system(" ".join(["jumboDBG", "--reads", " --reads ".join(genomes_to_run), "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"]))
+    print("Run cmd:", " ".join([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", " --reads ".join(genomes_to_run), "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"]))
+    os.system(" ".join([f"{dirname}/src/LJA/bin/jumboDBG", "--reads", " --reads ".join(genomes_to_run), "-t", "25", "-k", k, "-o", out_dir_graph, "--coverage"]))
     dot_graph = f"{out_dir_graph}/graph.dot"
     fa_graph = f"{out_dir_graph}/graph.fasta"
     out_dir_consensus = f"{args.output}/consensus_final"

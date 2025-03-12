@@ -27,17 +27,8 @@
    ```bash
    git clone https://github.com/ZhangZhenmiao/GenomeDecoder.git
    ```
-
-   Install the required dependencies to ensure proper functionality:
-   - [**gcc**](https://gcc.gnu.org/): tested on v11.4.0
-   - [**GNU Make**](https://www.gnu.org/software/make/): tested on v4.3
-   - [**RepeatMasker**](https://www.repeatmasker.org/): v4.1.5 (For masking interspersed repeats)
-   - [**Cigar**](https://pypi.org/project/cigar/): v0.1.3 (For processing Cigar strings)
-   - [**Pandas**](https://pandas.pydata.org/): v2.2.2 (For processing tables)
-   - [**BioPython**](https://biopython.org/): v1.81 (For processing sequence files)
-   - [**psutil**](https://pypi.org/project/psutil/): v5.9.0 (For support of monitoring memory)
-
-   These dependencies can be installed using Conda, which will create a new environment named `genomedecoder` (if you already installed these dependencies, skip this step):
+   
+   These dependencies (except for LJA assembler) can be installed using Conda, which will create a new environment named `genomedecoder`:
 
    ```bash
    cd GenomeDecoder
@@ -45,11 +36,17 @@
    conda activate genomedecoder
    ```
 
-   Build GenomeDecoder:
+   Build GenomeDecoder and LJA:
    ```bash
    cd src && make
    chmod +x consensus_asm edlib_align parse_cigar.py synteny synteny_analysis.py
    cd .. && chmod +x GenomeDecoder
+
+   # build dependency LJA (development branch required)
+   cd src/LJA
+   cmake .
+   make jumboDBG
+   cd ../../
    ```
 
 ## Usage
@@ -73,7 +70,7 @@ GenomeDecoder [-h] -g GENOME [-i ITERATIONS] [-k K_VALUES] [-s SIMPLE] [-c COMPL
   Displays the help message and exits.
 
 - **-g GENOME, --genome GENOME**  
-  Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker (in the case of a multi-chromosomal genome, all chromosomes/contigs will be concatenated in a single string using 2000 "N"s as separators automatically by GenomeDecoder). Use `-g` multiple times to compare multiple genomes.
+  Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker (in the case of a multi-chromosomal genome, all chromosomes/contigs will be concatenated in a single string using 2000 "N"s as separators automatically by GenomeDecoder). Use `-g` multiple times to compare multiple genomes (generate synteny blocks shared among those genomes).
 
 - **-i ITERATIONS, --iterations ITERATIONS**  
   Specifies the number of iterations to use, applicable for disembroiling more than two input genomes. The default value is 5.
@@ -112,9 +109,9 @@ Each `final_blocks_<i>.csv` file contains 12 columns:
 
 - **Is Short Version**: Specifies if the block-instance is a shortened version of the block (1 for yes, 0 for no).
 
-- **Start Pos in Original Sequence**: The starting coordinate of the block-instance in the original genome, obtained via Edlib.
+- **Start Pos in Original Sequence**: The starting coordinate of the block-instance in the original genome, obtained via Edlib. In case of a multi-chromosomal genome, note that the contigs/chromosomes have been concatnated by 2000 "N"s into a single sequence.
 
-- **End Pos in Original Sequence**: The ending coordinate of the block-instance in the original genome, obtained via Edlib.
+- **End Pos in Original Sequence**: The ending coordinate of the block-instance in the original genome, obtained via Edlib. In case of a multi-chromosomal genome, note that the contigs/chromosomes have been concatnated by 2000 "N"s into a single sequence.
 
 - **Similarity of Transformed Block and Original Block**: The percent identity between the block-instance in the disembroiled genome and its corresponding instance in the original genome, calculated by Edlib.
 

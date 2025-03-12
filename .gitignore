@@ -1,0 +1,12 @@
+.vscode/
+src/consensus_asm
+src/edlib_align
+src/synteny
+src/synteny_graph.o
+src/dot_graph.o
+**/CMakeFiles/
+**/cmake_install.cmake
+**/CMakeCache.txt
+src/LJA/Makefile
+src/unialigner/tandem_aligner/Makefile
+**/bin
