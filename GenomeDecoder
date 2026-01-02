@@ -118,7 +118,7 @@ parser.add_argument(
     "--genome",
     required=True,
     action="append",
-    help="Specifies the path to the genome file to be analyzed. This argument is required. Each input genome should contain a single contig and be masked using RepeatMasker (in the case of a multi-chromosomal genome, all chromosomes/contigs are concatenated in a single string using 2000 \"N\"s as separators automatically). Use -g multiple times to compare multiple genomes."
+    help="Specifies the path to a genome file to be analyzed. The input genome can be either a complete genome or a genomic subsequence in FASTA format. GenomeDecoder assumes each input contains a single sequence; if the file includes multiple contigs, they will be concatenated using 2,000 `"N`"s as separators. The -g option can be specified multiple times to compare different sequences, or a single time to identify synteny blocks within the sequence."
 )
 parser.add_argument(
     "-i",
