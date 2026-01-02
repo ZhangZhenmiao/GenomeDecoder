@@ -1,23 +1,16 @@
 
 # GenomeDecoder
 
-## Overview
+**GenomeDecoder** is a tool designed for generating synteny blocks in highly repetitive genomic regions. GenomeDecoder can infer synteny blocks in complete genomes; however, for large genomes, the runtime can be substantial.
 
-**GenomeDecoder** is a tool for identifying and reconstructing segmental duplications (SDs) within complete genomes. This tool was developed to tackle challenges in modern genomics, including the analysis of SDs in highly complex genomic regions that were previously unresolvable, such as immunoglobulin loci known for rapid evolution.
-
-## Features
-- **Identification of SDs**: GenomeDecoder accurately identifies SDs in complete genomes, facilitating research on genomic variations.
-- **Evolutionary Analysis of SDs**: Supports the study of SD evolution with a focus on highly duplicated regions.
-- **Comparative Genomics**: Enables comparasion of genomic architecture across complete genomes.
-
-## Installation Steps
+## Installation
 
 Download GenomeDecoder:
 ```bash
 git clone https://github.com/ZhangZhenmiao/GenomeDecoder.git
 ```
 
-Dependencies (except for LJA assembler) can be installed using Conda by creating a new environment `genomedecoder`:
+Dependencies can be installed by creating a new conda environment `genomedecoder`:
 
 ```bash
 cd GenomeDecoder
@@ -25,14 +18,14 @@ conda env create -f requirements.yml
 conda activate genomedecoder
 ```
 
-Build GenomeDecoder and LJA assembler:
+Build GenomeDecoder:
 ```bash
 # build GenomeDecoder
 cd src && make
 chmod +x consensus_asm edlib_align parse_cigar.py synteny synteny_analysis.py
 cd .. && chmod +x GenomeDecoder
 
-# build LJA (development branch required)
+# build LJA
 cd src/LJA
 cmake .
 make jumboDBG
@@ -41,26 +34,23 @@ cd ../../
 
 ## Usage
 
-### Sequence preparation:
-GenomeDecoder is a tool developed for complete genomes. Each input genome should be in FASTA format, and contain only one contig (in the case of a multi-chromosomal genome, all chromosomes/contigs will be concatenated in a single string using 2000 "N"s as separators automatically by GenomeDecoder). We highly recommend running RepeatMasker before inputting the genome files to GenomeDecoder.
-
-To run RepeatMasker, the species name is required (if not specified, RepeatMasker will treat the sequence as human by default):
+### Preprocessing
+We recommend running RepeatMasker to mask low-complexity repeats. The species name is required (human by default):
 
 ```bash
 RepeatMasker [-species species_name] input_file.fa
 ```
-This will create `input_file.fa.masked`. See more details in [RepeatMasker](https://www.repeatmasker.org/webrepeatmaskerhelp.html) manual.
+This will create `input_file.fa.masked` to be inputted to GenomeDecoder. See more details in [RepeatMasker](https://www.repeatmasker.org/webrepeatmaskerhelp.html) manual.
 
-### GenomeDecoder Command Syntax:
+### Parameters
 ```bash
 GenomeDecoder [-h] -g GENOME [-i ITERATIONS] [-k K_VALUES] [-s SIMPLE] [-c COMPLEX] -o OUTPUT
 ```
-### Parameters:
 - **-h, --help**  
   Displays the help message and exits.
 
 - **-g GENOME, --genome GENOME**  
-  Specifies the path to the genome file to be analyzed. Each input genome should contain a single contig and be masked using RepeatMasker (in the case of a multi-chromosomal genome, all chromosomes/contigs will be concatenated in a single string using 2000 "N"s as separators automatically by GenomeDecoder). Use `-g` multiple times to compare multiple genomes (generate synteny blocks shared among those genomes).
+  Specifies the path to a genome file to be analyzed. The input genome can be either a complete genome or a genomic subsequence in FASTA format. GenomeDecoder assumes each input contains a single sequence; if the file includes multiple contigs, they will be concatenated using 2,000 “N”s as separators. The `-g` option can be specified multiple times to compare different sequences, or a single time to identify synteny blocks within the sequence.
 
 - **-i ITERATIONS, --iterations ITERATIONS**  
   Specifies the number of iterations to use, applicable for disembroiling more than two input genomes. The default value is 5.
@@ -79,11 +69,9 @@ GenomeDecoder [-h] -g GENOME [-i ITERATIONS] [-k K_VALUES] [-s SIMPLE] [-c COMPL
 
 ## Outputs
 
-In the output directory, GenomeDecoder generates files named `final_blocks_<i>.csv`, where each `i` corresponds to the synteny blocks of the i<sup>th</sup> input genome, with a minimum block length of 2 kb.
+GenomeDecoder generates files named `final_blocks_<i>.csv`. Each `i` corresponds to the synteny blocks of the i<sup>th</sup> input genome, with a minimum block length of 2 kb. It contains 12 columns:
 
-Each `final_blocks_<i>.csv` file contains 12 columns:
-
-- **Synteny Block in Transformed Sequence**: Identifies each block-instance with a unique format: `block_ID(multiplicity_in_disembroiled_graph)length_in_kb`.
+- **Synteny Block in Transformed Sequence**: Provides each block-instance with a unique format: `block_ID(multiplicity_in_disembroiled_graph)length_in_kb`. This is the synteny block.
   
 - **Start Vertex in Transformed Graph**: The starting vertex of the block-instance in the disembroiled graph.
 
@@ -99,19 +87,21 @@ Each `final_blocks_<i>.csv` file contains 12 columns:
 
 - **Is Short Version**: Specifies if the block-instance is a shortened version of the block (1 for yes, 0 for no).
 
-- **Start Pos in Original Sequence**: The start coordinate of the block-instance in the original genome, obtained via Edlib. In case of a multi-chromosomal genome, note that the contigs/chromosomes have been concatnated by 2000 "N"s into a single sequence.
+- **Start Pos in Original Sequence**: The start coordinate of the block-instance in the original genome. If the i<sup>th</sup> input genome contains multiple contigs, the coordinate is defined on the concatenated sequence, where contigs are joined by 2,000 “N”s. For example, a coordinate x on the second contig corresponds to (length of the first contig) + 2,000 + x for this column.
 
-- **End Pos in Original Sequence**: The end coordinate of the block-instance in the original genome, obtained via Edlib. In case of a multi-chromosomal genome, note that the contigs/chromosomes have been concatnated by 2000 "N"s into a single sequence.
+- **End Pos in Original Sequence**: The end coordinate of the block instance in the original genome. If the i<sup>th</sup> input genome contains multiple contigs, the coordinate is defined on the concatenated sequence, where contigs are joined by 2,000 “N”s. For example, a coordinate x on the second contig corresponds to (length of the first contig) + 2,000 + x for this column.
 
 - **Similarity of Transformed Block and Original Block**: The percent identity between the block-instance in the disembroiled genome and its corresponding instance in the original genome, calculated by Edlib.
 
 - **Length in Original Sequence**: The length, in base pairs (bp), of this block-instance in the original genome.
 
-### Optional Analysis with `synteny_analysis.py`
+If you only need the synteny blocks and their coordinates, focus on the following three columns: **Synteny Block in Transformed Sequence**, **Start Pos in Original Sequence**, and **End Pos in Original Sequence**. The other columns are additional information.
 
-Under the `src` directory of this repo, there is an optional script, `synteny_analysis.py`, for transforming CSV outputs into block representations using letters (A-Z). This script is suitable for cases with fewer than three input genomes. **Note:** If the number of blocks exceeds 26, the script will produce an error.
+### Transform synteny blocks into alphabets by `synteny_analysis.py`
 
-#### Usage:
+`synteny_analysis.py` under the `src` can transform CSV outputs into alphabets (A-Z). This script is suitable for fewer than three input genomes. If the number of blocks exceeds 26, the script will produce an error.
+
+#### Usage
 For two genomes:
 ```bash
 synteny_analysis.py final_blocks_1.csv final_blocks_2.csv
@@ -126,7 +116,7 @@ The output will be printed to stdout.
 
 ### Example Usage
 
-The following command generates synteny blocks for the RepeatMasker-processed files `test_example/HG38.IHG.Masked.Ns_transformed.fa` and `test_example/Orang.IGH.Masked.Ns_transformed.fa`, saving the outputs to `test_example/output/final_blocks_1.csv` and `test_example/output/final_blocks_2.csv`, respectively:
+The following command generates synteny blocks for `test_example/HG38.IHG.Masked.Ns_transformed.fa` and `test_example/Orang.IGH.Masked.Ns_transformed.fa`, saving the synteny blocks to `test_example/output/final_blocks_1.csv` and `test_example/output/final_blocks_2.csv`, respectively:
 
 ```bash
 GenomeDecoder -g test_example/HG38.IHG.Masked.Ns_transformed.fa -g test_example/Orang.IGH.Masked.Ns_transformed.fa -o test_example/output
